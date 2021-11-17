@@ -23,13 +23,24 @@
 .footer__wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .footer__section {
     color: $basic-white;
+    width: 140px;
 }
-
+.footer__container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.footer__section-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 93px;
+}
 .footer__title {
     letter-spacing: 0.5px;
+    margin-bottom: 13px;
 }
 .footer__social {
     width: 104px;
@@ -41,6 +52,15 @@
         margin-top: 55px;
     } 
 }
+.about-footer__description {
+    margin: 0;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 16px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
 .social-footer__list {
     display: flex;
     flex-wrap: wrap;
@@ -49,6 +69,23 @@
 
 .info-footer__link, .catalog-footer__link, .contacts-footer__link {
     color: $basic-white;
+}
+.contacts-footer {
+    font-size: 10px;
+    line-height: 12px;
+    p {
+        margin: 0;
+    }
+}
+
+.contacts-footer__wrapper {
+    margin-bottom: 16px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+.contacts-footer__title {
+    margin: 0;
 }
 .contacts-footer__link, .contacts-footer__time {
     position: relative;
