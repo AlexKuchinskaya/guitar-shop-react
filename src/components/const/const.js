@@ -69,6 +69,28 @@ export const footerSocialInfo = [
   },
 ]
 
+export const footerCatalogLinks = [
+  {
+    name: `Акустические гитары?`,
+    id: 1,
+  },
+  {
+    name: `Классические гитары`,
+    id: 2,
+  },
+  {
+    name: `Электрогитары`,
+    id: 3,
+  },
+  {
+    name: `Бас-гитары`,
+    id: 4,
+  },
+  {
+    name: `Укулеле`,
+    id: 5,
+  },
+]
 export const footerInfoLinks = [
   {
     name: `Где купить?`,

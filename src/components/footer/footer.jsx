@@ -1,5 +1,5 @@
 import React from 'react';
-import {footerInfoLinks} from '../const/const'
+import {footerCatalogLinks, footerInfoLinks} from '../const/const'
 import Logo from '../logo/logo';
 import FooterSocial from './footer-social';
 import './footer.scss';
@@ -12,51 +12,54 @@ const Footer = () => {
                 <FooterSocial />
               </div>
               <div className="footer__section footer__section--second">
-                <h2 class="title">О нас</h2>
+                <h2 class="title footer__title">О нас</h2>
                 <div className="footer__about about-footer">
                     <p className="about-footer__description">Магазин гитар, музыкальных инструментов и гитарная мастерская в Санкт-Петербурге.</p>
                     <p className="about-footer__description">Все инструменты проверены, отстроены и доведены до идеала! </p>
                 </div>
               </div>
-              <div className="footer__section footer__section--second">
-                <h2 class="title">Информация</h2>
-                <div className="footer__about about-footer">
-                    <ul className="list social-footer__list">
-                        {footerInfoLinks.map((footerInfo) => {
-                            return <li key={footerInfo.name} className="social-footer__item">
-                                <a href="!#" className="social-footer__link">
-                                    {footerInfo.name}
+              <div className="footer__section footer__section--third">
+                <h2 class="title footer__title">Каталог</h2>
+                <div className="footer__about catalog-footer">
+                    <ul className="list catalog-footer__list">
+                        {footerCatalogLinks.map((footerCatalog) => {
+                            return <li key={footerCatalog.name} className="catalog-footer__item">
+                                <a href="!#" className="catalog-footer__link">
+                                    {footerCatalog.name}
                                 </a>
                             </li>;
-                    })}
+                        })}
                     </ul>
                 </div>
               </div>
-            {/* <div className="footer__left">
-                <div className="footer__info information-footer">
-                    <Logo isInternetBank={false}/>
-                    <p className="information-footer__text information-footer__text--tablet-no">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019</p>
-                </div>
-                <div className="nav-footer">
-                    <ul className="list footer__nav nav-footer__list">
-                    {footerNavLinksList.map((siteLink) => {
-                        return <li key={siteLink.linkName} className="nav-footer__item">
-                        <a href={`#${siteLink.href}`} className="nav-footer__link">{siteLink.linkName}</a>
-                        </li>;
-                    })}
+              <div className="footer__section footer__section--fouth">
+                <h2 class="title footer__title">Информация</h2>
+                <div className="footer__about info-footer">
+                    <ul className="list info-footer__list">
+                        {footerInfoLinks.map((footerInfo) => {
+                            return <li key={footerInfo.name} className="info-footer__item">
+                                <a href="!#" className="info-footer__link">
+                                    {footerInfo.name}
+                                </a>
+                            </li>;
+                        })}
                     </ul>
                 </div>
-                <p className="information-footer__text information-footer__text--tablet-yes">150015, г. Москва, ул. Московская, д. 32 Генеральная лицензия Банка России №1050 Ⓒ Лига Банк, 2019</p>
-            </div>    
-            <div className="footer__right">
-                {footerContactslInfo.map((contact) => {
-                    return <div key={contact.name} className={`contacts-footer contacts-footer--${contact.name}`}>
-                    <a href={`tel:${contact.tel.replace(/\s/g, ``)}`} className="contact__footer__link">{contact.tel}</a>
-                    <p className="contact__footer__description">{contact.description}</p>
-                    </div>;
-                })}
-                
-            </div> */}
+              </div>
+              <div className="footer__section footer__section--fifth">
+                <h2 class="title footer__title">Контакты</h2>
+                <div className="footer__about contacts-footer">
+                    <div className="contacts-footer__wrapper">
+                        <h3 className="title visually-hidden contacts-footer__title">Адрес</h3>
+                        <p className="contacts-footer__adress">г. Санкт-Петербург, м. Невский проспект, ул. Казанская 6. </p>
+                        <a href="tel:88125005050" className="contacts-footer__link">8-812-500-50-50</a>
+                    </div>
+                    <div className="contacts-footer__wrapper">
+                        <h3 className="contacts-footer__title">Режим работы:</h3>
+                        <p className="contacts-footer__time">с 11:00 до 20:00, без выходных.</p>
+                    </div>
+                </div>
+              </div>
       </div>
         </footer>
     );

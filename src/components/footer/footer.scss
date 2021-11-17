@@ -16,12 +16,20 @@
     }  
 }
 
+.footer a {
+    font-size: 10px;
+    line-height: 20px;
+}
 .footer__wrapper {
     display: flex;
     flex-wrap: wrap;
 }
 .footer__section {
     color: $basic-white;
+}
+
+.footer__title {
+    letter-spacing: 0.5px;
 }
 .footer__social {
     width: 104px;
@@ -39,6 +47,38 @@
     justify-content: space-between; 
 }
 
-.about-footer {
-    
+.info-footer__link, .catalog-footer__link, .contacts-footer__link {
+    color: $basic-white;
+}
+.contacts-footer__link, .contacts-footer__time {
+    position: relative;
+    padding-left: 15px;
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+}
+
+.contacts-footer__link {
+    &::before {
+        background-image: url(../../img/icon-phone.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 100%;
+    }
+}
+
+.contacts-footer__time {
+    &::before {
+        background-image: url(../../img/icon-clock.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: auto 100%;
+    }
 }
