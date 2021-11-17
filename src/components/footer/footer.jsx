@@ -14,14 +14,14 @@ const Footer = () => {
               <div className="footer__container">
                   <div className="footer__section-container">
                     <div className="footer__section footer__section--about">
-                        <h2 class="title footer__title">О нас</h2>
+                        <h2 className="title footer__title">О нас</h2>
                         <div className="footer__about about-footer">
                             <p className="about-footer__description">Магазин гитар, музыкальных инструментов и гитарная мастерская в Санкт-Петербурге.</p>
                             <p className="about-footer__description">Все инструменты проверены, отстроены и доведены до идеала! </p>
                         </div>
                     </div>
                     <div className="footer__section footer__section--catalog">
-                        <h2 class="title footer__title">Каталог</h2>
+                        <h2 className="title footer__title">Каталог</h2>
                         <div className="footer__about catalog-footer">
                             <ul className="list catalog-footer__list">
                                 {footerCatalogLinks.map((footerCatalog) => {
@@ -35,7 +35,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="footer__section footer__section--info">
-                        <h2 class="title footer__title">Информация</h2>
+                        <h2 className="title footer__title">Информация</h2>
                         <div className="footer__about info-footer">
                             <ul className="list info-footer__list">
                                 {footerInfoLinks.map((footerInfo) => {
@@ -50,7 +50,7 @@ const Footer = () => {
                     </div>
                   </div>
                 <div className="footer__section footer__section--contacts">
-                    <h2 class="title footer__title">Контакты</h2>
+                    <h2 className="title footer__title">Контакты</h2>
                     <div className="footer__about contacts-footer">
                         <div className="contacts-footer__wrapper">
                             <h3 className="title visually-hidden contacts-footer__title">Адрес</h3>
