@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+@import '../../styles/container-site.scss';
+@import '../../styles/list.scss';
+
+.header {
+    box-sizing: border-box;
+    background-color: $light-grey;
+    min-height: 110px;
+    padding: 20px 0;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__extra-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header__extra-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-height: 40px;
+    svg {
+        
+        // width: 40px;
+        // height: 40px;
+    }
+    // position: relative;
+    // background-repeat: no-repeat;
+    // display: block;
+    // background-position: center;
+    // background-image: url(../im);
+    // width: 40px;
+    // height: 40px;
+
+}
+.header__extra-count {
+    color: $red;
+}

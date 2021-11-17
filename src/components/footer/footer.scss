@@ -1,0 +1,44 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+@import '../../styles/container-site.scss';
+@import '../../styles/title.scss';
+@import '../../styles/list.scss';
+
+
+.footer {
+    background-color: $dark-grey;
+    @media screen and (min-width: $tablet-width) {
+        padding-top: 61px;
+        padding-bottom: 51px;
+    } 
+    @media screen and (min-width: $desktop-width) {
+        padding-bottom: 63px;
+    }  
+}
+
+.footer__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+.footer__section {
+    color: $basic-white;
+}
+.footer__social {
+    width: 104px;
+    @media screen and (min-width: $tablet-width) {
+        margin-top: 67px;
+    } 
+    @media screen and (min-width: $desktop-width) {
+        width: 118px;
+        margin-top: 55px;
+    } 
+}
+.social-footer__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+}
+
+.about-footer {
+    
+}

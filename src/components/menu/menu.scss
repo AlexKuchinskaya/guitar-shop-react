@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+.menu__list {
+    @media screen and (max-width: $mobile-width-only) {
+        // border-top: 1px solid #C1C2CA;
+        // margin-top: 43px;
+    } 
+    @media screen and (min-width: $tablet-width) {
+        display: flex;
+        flex-wrap: wrap;
+        // justify-content: space-between;
+    }  
+}
+
+.menu__item {
+    @media screen and (min-width: $tablet-width) {
+        margin-right: 20px;
+        &:last-child {
+            margin-right: 0;
+        }
+     }  
+     @media screen and (min-width: $desktop-width) {
+         margin-right: 40px;
+     }  
+}
+
+.menu__link {
+    color: $basic-black;
+    // @media screen and (max-width: $mobile-width-only) {
+    //     display: block;
+    //     padding-top: 23px;
+    //     padding-bottom: 18px;
+    //     padding-left: 15px;
+    //     line-height: 18.75px;
+    // } 
+    @media screen and (min-width: $tablet-width) {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+    }    
+}
