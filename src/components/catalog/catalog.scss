@@ -18,6 +18,10 @@
 .catalog__card-container {
     display: flex;
     justify-content: space-between;
+    &--rating {
+        width: 84px;
+        align-items: center;
+    }
     &--rating--info {
         margin-top: 8px;
         margin-bottom: 16px;
