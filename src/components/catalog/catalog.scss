@@ -8,9 +8,20 @@
     padding: 16px 14px 20px;
 }
 
+.catalog__list {
+    display: grid;
+    grid-template-columns: 220px 220px 220px;
+    grid-column-gap: 19px;
+    row-gap: 30px;
+    
+}
 .catalog__card-container {
     display: flex;
     justify-content: space-between;
+    &--rating--info {
+        margin-top: 8px;
+        margin-bottom: 16px;
+    }
 }
 
 .catalog__guitar-reviews {
@@ -55,4 +66,17 @@
         background-position: center;
         background-size: auto 100%;
     }
+}
+.catalog__image {
+    width: 68px;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+.catalog__guitar-image {
+    width: 68px;
+    height: 190px;
+}
+
+.catalog__rating {
+    display: flex;
 }

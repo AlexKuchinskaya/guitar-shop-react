@@ -1,3 +1,4 @@
+export const STARS_RATING = [1, 2, 3, 4, 5];
 export const ExtraLinks = {
   MAP: 1,
   SEARCH: 2,
@@ -8,6 +9,12 @@ export const SocialLinks = {
   FACEBOOK: 1,
   INSTAGRAM: 2,
   TWITTER: 3
+}
+
+export const GuitarTypes = {
+  ACOUSTIC: `акустическая гитара`,
+  ELECTRO: `электрогитара`,
+  UKULELE: `укулеле`
 }
 export const allNavSiteLinks = [
     {
