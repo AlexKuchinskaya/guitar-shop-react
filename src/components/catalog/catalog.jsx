@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { mocks } from '../mocks/mock';
 import { formatPriceWithSpaces } from '../utils/utils';
 import {GuitarTypes} from '../const/const';
 // import { ReactComponent as LogoIconFooter } from '../../img/logo-footer.svg';
 import './catalog.scss';
 import CatalogStarRating from './catalog-star-rating';
+import CatalogSort from './catalog-sort';
+
 
 const Catalog = () => {
-
+  const [mocksData, setMocksData] = useState(mocks)
+  const onPriceChange = (sortCallback) => {
+    setMocksData([...mocksData].sort(sortCallback));
+  }
   const returnGuitarPicture = (guitarType) => {
     switch (guitarType) {
       case GuitarTypes.ACOUSTIC:
@@ -25,10 +30,12 @@ const Catalog = () => {
             <h2 className="title catalog__title">Каталог гитар</h2>
             <div className="catalog__sort sort">
                 <span>Сортировать:</span>
+                <CatalogSort onPriceChange={onPriceChange} />
             </div>
             <div className="catalog__wrapper">
                 <ul className="list catalog__list">
-                    {mocks.map((mockGuitar) => {
+                    {mocksData.map((mockGuitar) => {
+                      console.log(`mocksData`, mocksData)
                         return <article className="catalog__card" key={mockGuitar.item}>
                           <div className="catalog__image">
                               <img src={returnGuitarPicture(mockGuitar.type)} className="catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />
