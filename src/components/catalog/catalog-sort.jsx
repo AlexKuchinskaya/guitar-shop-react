@@ -1,44 +1,56 @@
-import React from 'react';
-import { sortGuitarsByPrice, sortGuitarsByReviews } from '../utils/utils';
-// import { ReactComponent as LogoIcon } from '../../img/logo.svg';
-// import { ReactComponent as LogoIconFooter } from '../../img/logo-footer.svg';
-// s
+import React, {useState} from 'react';
+import { sortGuitarsByPriceFromLowestToHighest, sortGuitarsByReviewsFromLowestToHighest, sortGuitarsByPriceFromHighestToLowest, sortGuitarsByReviewsFromHighestToLowest } from '../utils/utils';
+import { ReactComponent as UpIcon } from '../../img/icon-arrow-up.svg';
+import { ReactComponent as DownIcon } from '../../img/icon-arrow-down.svg';
+import Filter from '../filter/filter';
 
-const CatalogSort = ({onPriceChange}) => {
-    const handleSortByPrice = () => {
-        console.log(`button clicked`)
-        onPriceChange(sortGuitarsByPrice)
+const CatalogSort = ({onSortTypeChange}) => {
+    const [isPrice, setIsPrice] = useState(true);
+    const handleSortByPriceFromLowestToHighest = () => {
+        setIsPrice(true)
+        onSortTypeChange(sortGuitarsByPriceFromLowestToHighest)
     }
-    const handleSortByReviews = () => {
-        onPriceChange(sortGuitarsByReviews)
+    const handleSortByReviewsFromLowestToHighest = () => {
+        setIsPrice(false)
+        onSortTypeChange(sortGuitarsByReviewsFromLowestToHighest)
     }
+
+    const handleSortByPriceFromHighestToLowest = () => {
+        setIsPrice(true)
+        onSortTypeChange(sortGuitarsByPriceFromHighestToLowest)
+    }
+    const handleSortByReviewsFromLowestToLowest = () => {
+        setIsPrice(false)
+        onSortTypeChange(sortGuitarsByReviewsFromHighestToLowest)
+    }
+
   return <>
-    <form className="catalog__sort form-sort" action="#" method="get">
-        <div className="form-sort__container">
-            <button className="button button__sort" type="button" onClick={handleSortByPrice}>By price</button>
-            <button className="button button__sort" type="button" onClick={handleSortByReviews}>By reviews</button>
-            {/* <input 
-                id="sort-price" 
-                className="form-sort__input visually-hidden" 
-                type="radio" 
-                name="trip-sort" 
-                value="sort-price" 
-                onChange={handleSortByPrice}
-                checked
-            />
-            <label class="form-sort__label" htmlFor="sort-price">по цене</label> */}
+        <div className="catalog__sort sort">
+            <Filter />
+            <h3 className="title sort__title">Сортировать:</h3>
+            <div className="sort__container sort__container--text">
+                <button className="button sort__button sort__button--price" type="button" onClick={handleSortByPriceFromLowestToHighest}>по цене</button>
+                <button className="button sort__button sort__button--reviews" type="button" onClick={handleSortByReviewsFromLowestToHighest}>по популярности</button>
+            </div> 
+            <div className="sort__container sort__container--pictures">
+                <button 
+                    className="button sort__button sort__button--up"
+                    type="button"
+                    onClick={isPrice ? handleSortByPriceFromLowestToHighest : handleSortByReviewsFromLowestToHighest}
+                >
+                    <UpIcon />
+                </button>
+                <button 
+                    className="button sort__button sort__button--down"
+                    type="button"
+                    onClick={isPrice ? handleSortByPriceFromHighestToLowest : handleSortByReviewsFromLowestToLowest}
+                >
+                    <DownIcon />
+                </button>
+            </div> 
         </div>
 
-        <div className="form-sort__container">
-            <input 
-                id="sort-reviews"
-                className="form-sort__input visually-hidden"
-                type="radio" 
-                name="sort-reviews" 
-                value="sort-offer"/>
-            <label className="form-sort__label" htmlFor="sort-reviews">по популярности</label>
-        </div>
-    </form>
+ 
   </>
 };
 

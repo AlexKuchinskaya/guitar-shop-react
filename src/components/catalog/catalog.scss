@@ -84,3 +84,22 @@
 .catalog__rating {
     display: flex;
 }
+.sort {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.sort__container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sort__button {
+    margin-right: 34px;
+    &--up {
+        margin-right: 14px;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+}

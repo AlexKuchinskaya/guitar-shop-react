@@ -16,6 +16,8 @@ export const GuitarTypes = {
   ELECTRO: `электрогитара`,
   UKULELE: `укулеле`
 }
+export const guitarTypesCheckbox = [`акустическая гитара`, `электрогитара`, `укулеле`]
+export const guitarNumberOfStrings = [4, 6, 7, 12]
 export const allNavSiteLinks = [
     {
       linkName:`Каталог`,
