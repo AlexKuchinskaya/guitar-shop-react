@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { sortGuitarsByPriceFromLowestToHighest, sortGuitarsByReviewsFromLowestToHighest, sortGuitarsByPriceFromHighestToLowest, sortGuitarsByReviewsFromHighestToLowest } from '../utils/utils';
 import { ReactComponent as UpIcon } from '../../img/icon-arrow-up.svg';
 import { ReactComponent as DownIcon } from '../../img/icon-arrow-down.svg';
-import Filter from '../filter/filter';
 
 const CatalogSort = ({onSortTypeChange}) => {
     const [isPrice, setIsPrice] = useState(true);
@@ -26,7 +25,6 @@ const CatalogSort = ({onSortTypeChange}) => {
 
   return <>
         <div className="catalog__sort sort">
-            <Filter />
             <h3 className="title sort__title">Сортировать:</h3>
             <div className="sort__container sort__container--text">
                 <button className="button sort__button sort__button--price" type="button" onClick={handleSortByPriceFromLowestToHighest}>по цене</button>

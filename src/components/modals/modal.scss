@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+@import '../../styles/container-site.scss';
+@import '../../styles/title.scss';
+@import '../../styles/button.scss';
+
+.modal p {
+    margin: 0;
+}
+
+.modal__title {
+    color: $light-black;
+    margin-bottom: 25px;
+}
+
+.modal__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal__button {
+    box-sizing: border-box;
+    background-color: $orange;
+    padding: 14px 13px;
+    width: 220px;
+    color: $basic-white;
+
+}

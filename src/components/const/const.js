@@ -80,7 +80,7 @@ export const footerSocialInfo = [
 
 export const footerCatalogLinks = [
   {
-    name: `Акустические гитары?`,
+    name: `Акустические гитары`,
     id: 1,
   },
   {
