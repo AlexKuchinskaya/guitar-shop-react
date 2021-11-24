@@ -9,18 +9,29 @@ import CatalogSort from './catalog-sort';
 import Filter from '../filter/filter';
 import AddToBasket from '../modals/add-to-basket';
 import ModalBasket from '../modals/modalBasket';
+import Pagination from '../pagination/pagination';
 
 
 const Catalog = ({guitars}) => {
+  // const bodyElement = document.querySelector(`.body-page`)
+  const [currentPage, setCurrentPage] = useState(1)
+  const guitarPerPage = 9;
+  const lastGuitarIndex = currentPage * guitarPerPage;
+  const firstGuitarIndex = lastGuitarIndex - guitarPerPage;
   const [mocksData, setMocksData] = useState(guitars)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalIndex, setModalIndex] = useState(null)
+  const currentGuitarListPerPage = mocksData.slice(firstGuitarIndex, lastGuitarIndex)
+
   const onSortTypeChange = (sortCallback) => {
     if (mocksData !== guitars) {
       setMocksData([...guitars]);
     }
     setMocksData([...mocksData].sort(sortCallback));
   }
+
+  const onPageNumberClick = (pageNumber) => setCurrentPage(pageNumber);
+
   const returnGuitarPicture = (guitarType) => {
     switch (guitarType) {
       case GuitarTypes.ACOUSTIC:
@@ -33,9 +44,12 @@ const Catalog = ({guitars}) => {
         return ``;
     }
   }
+
   const handleButtonBuyOnClick = (index) => {
     setIsModalOpen(true);
-    setModalIndex(index)
+    setModalIndex(index);
+    // console.log(`bodyElement`, bodyElement)
+    // bodyElement.classListAdd(`body-page--hidden`)
   }
   return (
     <section className="catalog">
@@ -44,7 +58,7 @@ const Catalog = ({guitars}) => {
             <CatalogSort onSortTypeChange={onSortTypeChange} />
             <div className="catalog__wrapper">
                 <ul className="list catalog__list">
-                    {mocksData.map((mockGuitar, index) => {
+                    {currentGuitarListPerPage.map((mockGuitar, index) => {
                         return <>
                         <article className="catalog__card" key={mockGuitar.item}>
                           <div className="catalog__image">
@@ -71,6 +85,7 @@ const Catalog = ({guitars}) => {
                     })}
                 </ul>
                 {isModalOpen && modalIndex !== null ? <ModalBasket guitarCard={mocksData[modalIndex]}/> : ``}
+                <Pagination guitarPerPage={guitarPerPage} totalGuitars={mocksData.length} onPageNumberClick={onPageNumberClick}/>
             </div>
         </section>
   )

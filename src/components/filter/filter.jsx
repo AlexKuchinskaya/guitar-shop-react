@@ -1,32 +1,49 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { guitarTypesCheckbox, guitarNumberOfStrings } from '../const/const';
 import './filter.scss';
 // import './logo.scss';
 
 const Filter = () => {
-const arrGuit = [
-    {
-        acoustic: {
+const [stateStringsArrayFilter, setStateStringsArrayFilter] = useState([
+    true, true, true, true
+])
 
-        }
-    }
-]
+const addAcousticFilterToState = (filters) => {
+    console.log("ACUSTIC FILTER")
+    const acousticFilter = [true, false,false,false];
+    const returnFilter = acousticFilter.map((value,index)=>{
+        return value && filters[index];
+    })
+    return returnFilter;
+}
+
+const addElectricFilterToState= (filters) => {
+    const electricFilter = [false, false,false,true];
+    const returnFilter = electricFilter.map((value,index)=>{
+        return value && filters[index];
+    })
+    return returnFilter;
+}
+
+const addUkuleleFilterToState = (filters) => {
+    const ukeleleFilter = [false, true,true,true];
+    const returnFilter = ukeleleFilter.map((value,index)=>{
+        return value && filters[index];
+    })
+    return (returnFilter);
+}
+
 const checkStringCheckboxDisabled = (iii, strings) => {
-    const r = guitarTypesCheckbox.map((gug => {
-        console.log(gug)
-        console.log(strings)
+    const r = guitarTypesCheckbox.map((gug => {    
         const oqe = strings === 4 || strings === 7 || strings === 12
         const electroor = strings === 4 || strings === 7 || strings === 6
         if (gug === iii && oqe) {
-            console.log(`gug === iii && oqe`, gug === iii && oqe)
             return false
         } 
         else if (gug === iii && electroor) {
-            console.log(`gug === iii && electroor`, gug === iii && electroor)
             return false
         } 
         else if (gug === iii && strings === 4) {
-            console.log(`gug === iii && strings === 4`, gug === iii && strings === 4)
             return false
         }
         else {
@@ -34,7 +51,6 @@ const checkStringCheckboxDisabled = (iii, strings) => {
         }
        
     }))
-    console.log(`r`, r)
     return r;
 }
 function isBiggerThan10(element, iii, strings, index, array) {
@@ -42,7 +58,6 @@ function isBiggerThan10(element, iii, strings, index, array) {
         return element === iii & strings === 4
     }
   }
-  const bla =[2, 5, 8, 1, 4].some(isBiggerThan10);
     const [checkedTypeGuitarState, setCheckedTypeGuitarState] = useState(
         new Array(guitarTypesCheckbox.length).fill(false)
     );
@@ -50,37 +65,103 @@ function isBiggerThan10(element, iii, strings, index, array) {
         new Array(guitarNumberOfStrings.length).fill(true)
     );
     const handleGuitarTypeOnChange = (position) => {
+
+        //console.log("position: ", position)
         const updatedCheckedState = checkedTypeGuitarState.map((itemState, index) =>
-            index === position ? !itemState : itemState
+        index === position ? !itemState : itemState
         );
 
         setCheckedTypeGuitarState(updatedCheckedState);
-        console.log(`updatedCheckedState`, updatedCheckedState)
-        const updatedDisabledState = updatedCheckedState.map((itemState, index) => {
-            let arra 
-            console.log(`itemState`,itemState)
-            console.log(`index`,index)
-            if (itemState && index === 0) {
-                arra = [true, false, false, false]
-                console.log(`arra`, arra)
-                return [true, false, false, false]
-            }
-            else if (itemState && index === 1) {
-                arra = [false, false, false, true]
-                return [false, false, false, true]
+        //console.log(`updatedCheckedState`, updatedCheckedState);
+        //console.log(`stateStringsArrayFilter`, stateStringsArrayFilter);
+        // for (let position = 0; position < updatedCheckedState.length; position++)  { 
+        //     if(position === 0 ){
+        //         if(updatedCheckedState[position]){
+        //             console.log(`checkedTypeGuitarState[position]`, checkedTypeGuitarState[position])
+        //             addAcousticFilterToState();
+        //             console.log(`stateStringsArrayFilter`, stateStringsArrayFilter);
+        //         }
+        //     }
+        //     if(position === 1 ){
+        //         if(updatedCheckedState[position]){
+        //             addElectricFilterToState();
+        //         }
+        //     }
+        //     if(position === 2 ){
+        //         if(updatedCheckedState[position]){
+        //             addUkuleleFilterToState();
+        //         }
+        //     }
+            
+        // }
+       // console.log(`stateStringsArrayFilterAfter`, stateStringsArrayFilter);
+        // if(position === 0 ){
+        //     if(updatedCheckedState[position]){
+        //         console.log(`checkedTypeGuitarState[position]`, checkedTypeGuitarState[position])
+        //         addAcousticFilterToState();
+        //     }
+        // }
+        // if(position === 1 ){
+        //     if(updatedCheckedState[position]){
+        //         addElectricFilterToState();
+        //     }
+        // }
+        // if(position === 2 ){
+        //     if(updatedCheckedState[position]){
+        //         addUkuleleFilterToState();
+        //     }
+        // }
+        // const updatedDisabledState = updatedCheckedState.map((itemState, index) => {
+        //     let arra 
+        //     if (itemState && index === 0) {
+        //         arra = [true, false, false, false]
+        //         return [true, false, false, false]
+        //     }
+        //     else if (itemState && index === 1) {
+        //         arra = [false, false, false, true]
+        //         return [false, false, false, true]
                 
-            } else if ((itemState && index === 2)) {
-                arra = [true, true, true, false]
-                return [true, true, true, false]
+        //     } else if ((itemState && index === 2)) {
+        //         arra = [true, true, true, false]
+        //         return [true, true, true, false]
+        //     }
+            
+        // })
+        // const eliminatedUndefined = updatedDisabledState.find((itemSisable, index) => {
+        //     return itemSisable !== undefined
+        // })
+        // setDisabledTypeGuitarState(eliminatedUndefined)
+        // console.log(`updatedDisabledState`, disabledTypeGuitarState)
+    }
+    const handleCheckDisabiltyGuitarStrings = () => {
+        console.log(`Filters`, stateStringsArrayFilter);
+        let stringsArrayFilter = [true,true,true,true];
+        for (let position = 0; position < checkedTypeGuitarState.length; position++)  { 
+            if(position === 0 ){
+                if(checkedTypeGuitarState[position]){
+                    stringsArrayFilter = addAcousticFilterToState(stringsArrayFilter);
+                    console.log(`stateStringsArrayFilter`, stateStringsArrayFilter);
+                }
+            }
+            if(position === 1 ){
+                if(checkedTypeGuitarState[position]){
+                    stringsArrayFilter = addElectricFilterToState(stringsArrayFilter);
+                }
+            }
+            if(position === 2 ){
+                if(checkedTypeGuitarState[position]){
+                    stringsArrayFilter = addUkuleleFilterToState(stringsArrayFilter);
+                }
             }
             
-        })
-        const eliminatedUndefined = updatedDisabledState.find((itemSisable, index) => {
-            return itemSisable !== undefined
-        })
-        setDisabledTypeGuitarState(eliminatedUndefined)
-        console.log(`updatedDisabledState`, disabledTypeGuitarState)
+        }
+        setStateStringsArrayFilter(stringsArrayFilter);
     }
+
+    useEffect(() => {
+        handleCheckDisabiltyGuitarStrings();
+    }, [checkedTypeGuitarState]);
+
     const handleGuitarDisabledStutsOnChange = () => {
         const updatedCheckedState = checkedTypeGuitarState.map((itemState, index) => {
             if (itemState && index === 0) {
@@ -88,11 +169,12 @@ function isBiggerThan10(element, iii, strings, index, array) {
                     true, false, false, false
                 ])
             }
-            else if (itemState && index === 1) {
-                setDisabledTypeGuitarState([
-                    false, false, false, true
-                ])
-            } else {
+            // else if (itemState && index === 1) {
+            //     setDisabledTypeGuitarState([
+            //         false, false, false, true
+            //     ])
+            // } 
+            else {
                 setDisabledTypeGuitarState([
                     true, true, true, false
                 ])
@@ -189,7 +271,7 @@ function isBiggerThan10(element, iii, strings, index, array) {
                                     <input 
                                         className="filter__input filter__checkbox"
                                         type="checkbox"
-                                        disabled={disabledTypeGuitarState[index]}
+                                        disabled={stateStringsArrayFilter[index]}
                                     />
                                     <span className="filter__check-box"></span>
                                     {stringNumber}
