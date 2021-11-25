@@ -17,3 +17,12 @@ export const sortGuitarsByReviewsFromLowestToHighest = (cardA, cardB) => {
 export const sortGuitarsByReviewsFromHighestToLowest = (cardA, cardB) => {
     return cardB.reviewNumber - cardA.reviewNumber;
 };
+
+const setRange = (start, end) => {
+    let length = end - start + 1;
+    /*
+        Create an array of certain length and set the elements within it from
+      start value to end value.
+    */
+    return Array.from({ length }, (_, idx) => idx + start);
+  };

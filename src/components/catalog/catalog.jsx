@@ -4,24 +4,54 @@ import { formatPriceWithSpaces } from '../utils/utils';
 import {GuitarTypes} from '../const/const';
 // import { ReactComponent as LogoIconFooter } from '../../img/logo-footer.svg';
 import './catalog.scss';
+import './pagination.scss';
 import CatalogStarRating from './catalog-star-rating';
 import CatalogSort from './catalog-sort';
 import Filter from '../filter/filter';
 import AddToBasket from '../modals/add-to-basket';
 import ModalBasket from '../modals/modalBasket';
-import Pagination from '../pagination/pagination';
+// import Pagination from '../pagination/pagination';
+import ReactPaginate from 'react-paginate';
 
 
 const Catalog = ({guitars}) => {
   // const bodyElement = document.querySelector(`.body-page`)
-  const [currentPage, setCurrentPage] = useState(1)
-  const guitarPerPage = 9;
-  const lastGuitarIndex = currentPage * guitarPerPage;
-  const firstGuitarIndex = lastGuitarIndex - guitarPerPage;
+  // const [currentPage, setCurrentPage] = useState(1)
+  const guitarPerPage = 2;
+  // const lastGuitarIndex = currentPage * guitarPerPage;
+  // const firstGuitarIndex = lastGuitarIndex - guitarPerPage;
   const [mocksData, setMocksData] = useState(guitars)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalIndex, setModalIndex] = useState(null)
-  const currentGuitarListPerPage = mocksData.slice(firstGuitarIndex, lastGuitarIndex)
+  // const currentGuitarListPerPage = mocksData.slice(firstGuitarIndex, lastGuitarIndex)
+
+
+  // React Paginate
+
+  // const [currentItems, setCurrentItems] = useState(null);
+  const [pageCount, setPageCount] = useState(0);
+  // Here we use item offsets; we could also use page offsets
+  // following the API or data you're working with.
+  const [itemOffset, setItemOffset] = useState(0);
+
+  useEffect(() => {
+    // Fetch items from another resources.
+    const endOffset = itemOffset + guitarPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    setMocksData(guitars.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(guitars.length / guitarPerPage));
+  }, [itemOffset, guitarPerPage, guitars]);
+
+  // Invoke when user click to request another page.
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * guitarPerPage) % guitars.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
+
 
   const onSortTypeChange = (sortCallback) => {
     if (mocksData !== guitars) {
@@ -30,7 +60,8 @@ const Catalog = ({guitars}) => {
     setMocksData([...mocksData].sort(sortCallback));
   }
 
-  const onPageNumberClick = (pageNumber) => setCurrentPage(pageNumber);
+  // const onPageNumberClick = (pageNumber) => setCurrentPage(pageNumber);
+
 
   const returnGuitarPicture = (guitarType) => {
     switch (guitarType) {
@@ -58,7 +89,8 @@ const Catalog = ({guitars}) => {
             <CatalogSort onSortTypeChange={onSortTypeChange} />
             <div className="catalog__wrapper">
                 <ul className="list catalog__list">
-                    {currentGuitarListPerPage.map((mockGuitar, index) => {
+                    {mocksData && 
+                      mocksData.map((mockGuitar, index) => {
                         return <>
                         <article className="catalog__card" key={mockGuitar.item}>
                           <div className="catalog__image">
@@ -85,7 +117,27 @@ const Catalog = ({guitars}) => {
                     })}
                 </ul>
                 {isModalOpen && modalIndex !== null ? <ModalBasket guitarCard={mocksData[modalIndex]}/> : ``}
-                <Pagination guitarPerPage={guitarPerPage} totalGuitars={mocksData.length} onPageNumberClick={onPageNumberClick}/>
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="Далее"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={1}
+                    marginPagesDisplayed={1}
+                    pageCount={pageCount}
+                    previousLabel="Назад"
+                    renderOnZeroPageCount={null}
+                    containerClassName={"list pagination__list"}
+                    pageClassName={"pagination__item"}
+                    pageLinkClassName={"pagination__link"}
+                    activeLinkClassName={"pagination__link pagination__link--active"}
+                    breakClassName={"pagination__item pagination__item--break"}
+                    breakLinkClassName={"pagination__link--break"}
+                    previousClassName={"pagination__item pagination__item--back"}
+                    nextClassName={"pagination__item pagination__item--next"}
+                    previousLinkClassName={"pagination__link pagination__link--back"}
+                    nextLinkClassName={"pagination__link pagination__link--next"}
+                />
+                {/* <Pagination guitarPerPage={guitarPerPage} totalGuitars={mocksData.length} onPageNumberClick={onPageNumberClick}/> */}
             </div>
         </section>
   )
