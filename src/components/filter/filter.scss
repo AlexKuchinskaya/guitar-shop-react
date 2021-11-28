@@ -2,6 +2,7 @@
 // @import '../../styles/title.scss';
 @import '../../styles/list.scss';
 
+
 .filter-wrapper {
     padding: 30px 0;
     border-bottom: 1px solid $normal-grey;
@@ -69,4 +70,12 @@
     border-radius: 4px;
     border: 1px solid $normal-grey;
     margin-left: -40px;
+}
+
+.filter__button-show {
+    background-color: $button-grey;
+    color: $basic-white;
+    text-transform: uppercase;
+    padding: 8px 28px;
+    width: 120px;
 }

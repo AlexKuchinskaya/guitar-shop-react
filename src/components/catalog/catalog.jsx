@@ -17,13 +17,14 @@ import ReactPaginate from 'react-paginate';
 const Catalog = ({guitars}) => {
   // const bodyElement = document.querySelector(`.body-page`)
   // const [currentPage, setCurrentPage] = useState(1)
-  const guitarPerPage = 2;
+  const guitarPerPage = 9;
   // const lastGuitarIndex = currentPage * guitarPerPage;
   // const firstGuitarIndex = lastGuitarIndex - guitarPerPage;
   const [mocksData, setMocksData] = useState(guitars)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalIndex, setModalIndex] = useState(null)
   // const currentGuitarListPerPage = mocksData.slice(firstGuitarIndex, lastGuitarIndex)
+
 
 
   // React Paginate
@@ -33,7 +34,9 @@ const Catalog = ({guitars}) => {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
-
+  const onFilterShowButtonClick = (onFilterShowButtonClickCallback) => {
+    setMocksData(onFilterShowButtonClickCallback([...guitars]))
+  }
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + guitarPerPage;
@@ -89,7 +92,7 @@ const Catalog = ({guitars}) => {
   return (
     <section className="catalog">
             <h2 className="title catalog__title">Каталог гитар</h2>
-            <Filter />
+            <Filter onFilterShowButtonClick={onFilterShowButtonClick}/>
             <CatalogSort onSortTypeChange={onSortTypeChange} />
             <div className="catalog__wrapper">
                 <ul className="list catalog__list">
