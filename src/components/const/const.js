@@ -1,4 +1,6 @@
+export const ESC_KEY = `Escape`;
 export const STARS_RATING = [1, 2, 3, 4, 5];
+
 export const ExtraLinks = {
   MAP: 1,
   SEARCH: 2,

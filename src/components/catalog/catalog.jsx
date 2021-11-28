@@ -44,6 +44,8 @@ const Catalog = ({guitars}) => {
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
+    console.log(`pageCount`, pageCount)
+
     const newOffset = (event.selected * guitarPerPage) % guitars.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
@@ -51,7 +53,9 @@ const Catalog = ({guitars}) => {
     setItemOffset(newOffset);
   };
 
-
+  const onIsModalOpenChange = (isModalOpenCallback) => {
+    setIsModalOpen(isModalOpenCallback)
+  }
 
   const onSortTypeChange = (sortCallback) => {
     if (mocksData !== guitars) {
@@ -116,7 +120,7 @@ const Catalog = ({guitars}) => {
                       </>
                     })}
                 </ul>
-                {isModalOpen && modalIndex !== null ? <ModalBasket guitarCard={mocksData[modalIndex]}/> : ``}
+                {isModalOpen && modalIndex !== null ? <ModalBasket guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
                 <ReactPaginate
                     breakLabel="..."
                     nextLabel="Далее"
@@ -132,7 +136,7 @@ const Catalog = ({guitars}) => {
                     activeLinkClassName={"pagination__link pagination__link--active"}
                     breakClassName={"pagination__item pagination__item--break"}
                     breakLinkClassName={"pagination__link--break"}
-                    previousClassName={"pagination__item pagination__item--back"}
+                    previousClassName={`pagination__item pagination__item--back ${itemOffset === 0 ? `pagination__item--none` : ``}`}
                     nextClassName={"pagination__item pagination__item--next"}
                     previousLinkClassName={"pagination__link pagination__link--back"}
                     nextLinkClassName={"pagination__link pagination__link--next"}

@@ -1,14 +1,11 @@
 import React from 'react';
-
+import { returnFalseForCallBackFunction } from '../utils/utils';
 import './modal.scss';
 
 const AddToBasket = ({guitarCard, onAddToBasketClick}) => {
-    const returnFalseForAddToBasket = () => {
-        return false
-    }
     const handleAddToBasket = () => {
 
-        onAddToBasketClick(returnFalseForAddToBasket)
+        onAddToBasketClick(returnFalseForCallBackFunction)
         //add logic of change number in header
         //add logic of add an item to basket page
     }

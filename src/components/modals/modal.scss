@@ -32,6 +32,24 @@
     background-color: $basic-white;
     padding: 30px 50px 32px; 
 }
+
+.modal__button-close {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    svg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 18px;
+        height: 18px;
+    }
+}
+
 .modal p {
     margin: 0;
 }
