@@ -1,13 +1,14 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
 import { returnFalseForCallBackFunction } from '../utils/utils';
 import './modal.scss';
 
-const AddToBasket = ({guitarCard, onAddToBasketClick}) => {
+const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick}) => {
     const handleAddToBasket = () => {
 
         onAddToBasketClick(returnFalseForCallBackFunction)
-        //add logic of change number in header
-        //add logic of add an item to basket page
+        onAddtoBasketButtonClick(currentbasketState + 1, guitarCard.id)
     }
   return <>
             <div className="modal__container">
@@ -32,4 +33,14 @@ const AddToBasket = ({guitarCard, onAddToBasketClick}) => {
   </>
 };
 
-export default AddToBasket;
+const mapStateToProps = (state) => ({
+    currentbasketState: state.itemsInBasket,
+  });
+const mapDispatchToProps = (dispatch) => ({
+    onAddtoBasketButtonClick(guitarItem, id) {
+      dispatch(ActionCreator.addToBasket(guitarItem, id));
+    },
+  
+});
+export {AddToBasket};
+export default connect(mapStateToProps, mapDispatchToProps)(AddToBasket);

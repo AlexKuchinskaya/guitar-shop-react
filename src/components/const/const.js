@@ -124,3 +124,9 @@ export const footerInfoLinks = [
     id: 5,
   },
 ]
+
+
+export const Routes = {
+  MAIN: `/`,
+  MY_BASKET: `/mybasket`,
+};

@@ -5,11 +5,11 @@ import { ReactComponent as BasketIcon } from '../../img/icon-basket.svg';
 import {extraLinks, ExtraLinks} from '../const/const';
 import Logo from '../logo/logo';
 import Menu from '../menu/menu';
-// import Login from '../login/login';
+import {connect} from 'react-redux';
 // import ModalLogin from '../modal-login/modal-login';
 import './header.scss';
 
-const Header = ({isMenuOpened = true}) => {
+const Header = ({isMenuOpened = true, basketItems}) => {
     const returnSvg = (link) => {
         switch (link) {
           case ExtraLinks.MAP:
@@ -33,7 +33,9 @@ const Header = ({isMenuOpened = true}) => {
                         return <li key={siteLink.id} className="header__extra-item">
                             <a href="!#" className={`header__extra-link header__extra-link--${siteLink.linkName}`} aria-label={siteLink.linkName}>
                             {returnSvg(siteLink.id)}
-                            {siteLink.id === 3 ? <span className="header__extra-count"><sup>2</sup></span> : ``}
+                            {siteLink.id === 3 ? <span className="header__extra-count">
+                                <sup>{basketItems > 0 ? basketItems : null}</sup>
+                            </span> : ``}
                             </a>
                         </li>;
                         })}
@@ -42,6 +44,9 @@ const Header = ({isMenuOpened = true}) => {
             </div>
         </header>
     </ >;
-  };
-  
-export default Header;
+};
+const mapStateToProps = (state) => ({
+    basketItems: state.itemsInBasket,
+});
+export {Header};
+export default connect(mapStateToProps)(Header);
