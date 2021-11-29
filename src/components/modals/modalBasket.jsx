@@ -14,6 +14,11 @@ const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
     setIsAddToBasket(newIsAddToBasket);
   }
 
+  const onContinueBuyButtonClick = (evt, continueBuyCallback) => {
+    if (!popUpRef.current.contains(evt.target)) {
+      onIsModalOpenChange(continueBuyCallback);
+    }
+  }
   const closePopUp = () => {
     onIsModalOpenChange(returnFalseForCallBackFunction)
   } 
@@ -38,7 +43,7 @@ const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
       document.removeEventListener(`keydown`, handleEscapeKeyPopUp);
     };
   });
-  
+
     return (
       <div className="modal modal--show">
         <div ref={popUpRef} className="modal__main">
@@ -47,7 +52,7 @@ const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
               {isAddToBasket ?
                 <AddToBasket guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick}/>
                 :
-                <AddedToBasket />
+                <AddedToBasket onContinueBuyButtonClick={onContinueBuyButtonClick}/>
             
             }
           </div>
