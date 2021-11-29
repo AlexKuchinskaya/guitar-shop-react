@@ -1,0 +1,84 @@
+@import '../../styles/variables.scss';
+@import '../../styles/global.scss';
+@import '../../styles/container-site.scss';
+@import '../../styles/list.scss';
+
+.basket__title {
+    margin-bottom: 20px;
+}
+
+.guitars__guitar-title {
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 15px;
+    margin-bottom: 14px;
+}
+
+.guitars__list {
+    border-top: 1px solid $light-grey;
+}
+.guitars__item {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    border-bottom: 1px solid $light-grey;
+    position: relative;
+}
+
+.guitars__container {
+    &--input {
+        display: flex;
+        height: 30px;
+    }
+}
+.guitars__number, .guitars__info {
+    margin: 0;
+    font-size: 14px;
+    line-height: 15px;
+    margin-bottom: 6px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.guitars__input {
+    display: block;
+    width: 28px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-top: 1px solid $normal-grey;
+    border-bottom: 1px solid $normal-grey;
+    color: $normal-grey;
+    border-radius: 0;
+    text-align: center;
+}
+
+.guitar__button {
+    position: relative;
+    width: 28px;
+    border: 1px solid $normal-grey;
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.guitar__button-delete {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 20px;
+    left: 0;
+    cursor: pointer;
+    svg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 18px;
+        height: 18px;
+    }
+}

@@ -4,12 +4,15 @@ import {ActionCreator} from '../../store/action';
 import { returnFalseForCallBackFunction } from '../utils/utils';
 import './modal.scss';
 
-const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick}) => {
+const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList }) => {
+    console.log(`idItemsInBasketListBefore`, idItemsInBasketList)
     const handleAddToBasket = () => {
-
+        console.log(`guitarCard.id`, guitarCard.id)
         onAddToBasketClick(returnFalseForCallBackFunction)
         onAddtoBasketButtonClick(currentbasketState + 1, guitarCard.id)
+        
     }
+    console.log(`idItemsInBasketList`, idItemsInBasketList)
   return <>
             <div className="modal__container">
                 <div className="modal__image">
@@ -35,6 +38,7 @@ const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddt
 
 const mapStateToProps = (state) => ({
     currentbasketState: state.itemsInBasket,
+    idItemsInBasketList: state.idItemsInBasketList,
   });
 const mapDispatchToProps = (dispatch) => ({
     onAddtoBasketButtonClick(guitarItem, id) {
