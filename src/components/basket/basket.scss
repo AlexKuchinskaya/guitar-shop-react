@@ -20,6 +20,7 @@
 .guitars__item {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     padding: 20px 0;
     border-bottom: 1px solid $light-grey;
     position: relative;
@@ -80,5 +81,11 @@
         transform: translateX(-50%);
         width: 18px;
         height: 18px;
+    }
+}
+
+.guitars__price {
+    &--quantity {
+        font-weight: bold;
     }
 }

@@ -9,6 +9,13 @@ const initialState = {
     idItemsInBasketList: []
 }
 
+const checkArrayForElement = (elementList, elementToCompare) => {
+    let index = elementList.indexOf(elementToCompare);
+    if (index > -1) {
+        elementList.splice(index, 1);
+    }
+    return elementList
+}
 const reducer = (state = initialState, action) => {
     switch (action.type) {
       case ActionType.ADD_TO_BASKET:
@@ -19,6 +26,12 @@ const reducer = (state = initialState, action) => {
             ...state.idItemsInBasketList,
             action.payloadTwo,
           ],
+        };
+        case ActionType.DELETE_FROM_BASKET:
+        return {
+          ...state,
+          itemsInBasket: action.payload,
+          idItemsInBasketList: checkArrayForElement(state.idItemsInBasketList, action.payloadTwo)
         };
       default:
         return state;

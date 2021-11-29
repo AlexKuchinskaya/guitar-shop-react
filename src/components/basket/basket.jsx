@@ -1,15 +1,27 @@
+import {useState} from 'react';
 import {connect} from 'react-redux';
 import Header from '../header/header';
 import Footer from '../footer/footer';
+import {ActionCreator} from '../../store/action';
 import {ReactComponent as CloseIcon} from '../../img/icon-cross.svg';
 import {ReactComponent as MinusIcon} from '../../img/minus-icon.svg';
 import {ReactComponent as PlusIcon} from '../../img/plus-icon.svg';
 import './basket.scss';
-import { returnGuitarPictureSmall } from './basket-utils';
+import {returnGuitarPictureSmall} from './basket-utils';
 
 const Basket = (props) => {
-    const {guitars, idItemsInBasketList} = props;
+    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick} = props;
+    const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     console.log(`idItemsInBasketList`, idItemsInBasketList)
+    const handleOnButtonPlusClick = (evt, guitarId) => {
+        evt.preventDefault()
+        onAddtoBasketButtonClick(currentBasketList + 1, guitarId)
+    }
+    const handleOnButtonMinusClick = (evt, guitarId) => {
+        console.log(`guitarId`, guitarId)
+        evt.preventDefault()
+        onDeleteFromBasketButtonClick(currentBasketList - 1, guitarId)
+    }
     return <>
      <Header />
      <main className="main">
@@ -42,11 +54,16 @@ const Basket = (props) => {
                                 </div>
                                 <div className="guitars__container guitars__container--input">
                                     <button type="button" className="button guitar__button guitar__button--minus" 
-                                    onClick={(evt) => {
-                                    evt.preventDefault()
-                                
-                                     
-                                    }}
+                                        onClick={(evt) => {
+                                            evt.preventDefault()
+                                            if (idItemsInBasketList.filter(item => item === guitarElement.id).length > 1) {
+                                                onDeleteFromBasketButtonClick(currentBasketList - 1, guitarElement.id)
+                                            } else {
+                                                console.log(`down to 1`)
+                                                setIsModalDeleteOpen(true)
+                                            }
+                                            
+                                        }}
                                     >
                                     <MinusIcon />
                                     </button>
@@ -60,23 +77,28 @@ const Basket = (props) => {
                                     // onBlur={handleInputQuantityOnBlur}
                                     />
                                     <button type="button" className="button guitar__button guitar__button--plus" 
-                                    onClick={(evt) => {
-                                        evt.preventDefault()
-                                        
-                                        }
-                                    }
+                                    onClick={(evt) => handleOnButtonPlusClick(evt, guitarElement.id)}
                                     >
                                         <PlusIcon />
                                     </button>
                                 </div>
                                 <div className="guitars__container">
-                                    <p className="guitars__price">{guitarElement.price} ₽</p>
+                                    <p className="guitars__price guitars__price--quantity">{guitarElement.price} ₽</p>
                                 </div>
                             </li>
                         }
                         return ``
                     })}
                 </ul>
+                <div className="promo">
+                    <h3 className="promo__title">Промокод на скидку</h3>
+                    <p className="promo__in">Введите свой промокод, если он у вас есть.</p>
+                    <label></label>
+                    <input type="text"/>
+                    <button>Применить купон</button>
+                </div>
+                <p>Всего: ₽ </p>
+                <button type="submit">Оформить заказ</button>
             </div>
         </section>
      </main>
@@ -86,8 +108,18 @@ const Basket = (props) => {
 
 const mapStateToProps = (state) => ({
     guitars: state.guitarList,
-    idItemsInBasketList: state.idItemsInBasketList
+    idItemsInBasketList: state.idItemsInBasketList,
+    currentBasketList: state.itemsInBasket,
 
 });
 export {Basket};
-export default connect(mapStateToProps)(Basket);
+const mapDispatchToProps = (dispatch) => ({
+    onAddtoBasketButtonClick(guitarItem, id) {
+      dispatch(ActionCreator.addToBasket(guitarItem, id));
+    },
+    onDeleteFromBasketButtonClick(guitarItem, id) {
+        dispatch(ActionCreator.deleteFromBasket(guitarItem, id));
+      },
+  
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);
