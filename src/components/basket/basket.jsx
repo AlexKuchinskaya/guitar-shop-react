@@ -7,7 +7,7 @@ import {ReactComponent as CloseIcon} from '../../img/icon-cross.svg';
 import {ReactComponent as MinusIcon} from '../../img/minus-icon.svg';
 import {ReactComponent as PlusIcon} from '../../img/plus-icon.svg';
 import './basket.scss';
-import {returnGuitarPictureSmall} from './basket-utils';
+import {returnGuitarPictureSmall} from '../utils/utils';
 
 const Basket = (props) => {
     const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick} = props;

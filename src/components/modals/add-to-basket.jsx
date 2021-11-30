@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import { returnFalseForCallBackFunction } from '../utils/utils';
+import {returnFalseForCallBackFunction, returnGuitarPictureSmall} from '../utils/utils';
 import './modal.scss';
 
 const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList }) => {
@@ -16,7 +16,7 @@ const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddt
   return <>
             <div className="modal__container">
                 <div className="modal__image">
-                    {/* <img src={returnGuitarPicture(mockGuitar.type)} className="modal__guitar-image" alt={mockGuitar.name} height="128" width="56" /> */}
+                    <img src={returnGuitarPictureSmall(guitarCard.type)} className="modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
                 </div>
                 <div>
                     <h4 className="title modal__guitar-title">{guitarCard.name}</h4>
