@@ -130,7 +130,7 @@ const Catalog = ({guitars}) => {
                         </article>
                     })}
                 </ul>
-                {isModalOpen && modalIndex !== null ? <ModalBasket isModalOpen={isModalOpen} guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
+                {isModalOpen && modalIndex !== null ? <ModalBasket isDeleteFromBasket={false} isModalOpen={isModalOpen} guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
                 <ReactPaginate
                     breakLabel="..."
                     nextLabel="Далее"

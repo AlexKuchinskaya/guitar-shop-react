@@ -4,7 +4,7 @@ import {ActionCreator} from '../../store/action';
 import {returnFalseForCallBackFunction, returnGuitarPictureSmall} from '../utils/utils';
 import './modal.scss';
 
-const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList }) => {
+const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList }) => {
     console.log(`idItemsInBasketListBefore`, idItemsInBasketList)
     const handleAddToBasket = () => {
         console.log(`guitarCard.id`, guitarCard.id)
@@ -14,6 +14,7 @@ const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddt
     }
     console.log(`idItemsInBasketList`, idItemsInBasketList)
   return <>
+            <h3 className="title modal__title">{isDeleteFromBasket? `Удалить этот товар?` : `Добавить товар в корзину`}</h3>
             <div className="modal__container">
                 <div className="modal__image">
                     <img src={returnGuitarPictureSmall(guitarCard.type)} className="modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
@@ -27,12 +28,30 @@ const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddt
                     <p className="modal__price">Цена: {guitarCard.price} ₽</p>
                 </div>
             </div>
+            {isDeleteFromBasket 
+            ?
+            <div className="modal__buttons-wrapper">
+                <button
+                className="button button--orange modal__button"
+                // onClick={handleAddToBasket}
+            >
+            Удалить товар
+            </button>
+                <button
+                    type="button"
+                    className="button button--transparent modal__button modal__button--continue"
+                    // onClick={handleOnContinueBuyClick}
+                >Продолжить покупки</button>
+            </div>
+            : 
             <button
             className="button button--orange modal__button"
             onClick={handleAddToBasket}
             >
             Добавить в корзину
             </button>
+            }
+
   </>
 };
 

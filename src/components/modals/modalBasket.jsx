@@ -8,7 +8,7 @@ import {ESC_KEY} from '../const/const';
 import { GuitarPropType } from '../../types/types';
 import FocusTrap from 'focus-trap-react'
 
-const ModalBasket = ({isModalOpen, guitarCard, onIsModalOpenChange}) => {
+const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpenChange}) => {
   const [isAddToBasket, setIsAddToBasket] = useState(true)
   const popUpRef = useRef();
 
@@ -46,15 +46,13 @@ const ModalBasket = ({isModalOpen, guitarCard, onIsModalOpenChange}) => {
       document.removeEventListener(`keydown`, handleEscapeKeyPopUp);
     };
   });
-
     return (
       <FocusTrap active={isModalOpen}>
       <div id="address-modal" aria-modal="true" className="modal modal--show">
         <div ref={popUpRef} className="modal__main">
-          <h3 className="title modal__title">{isAddToBasket? `Добавить товар в корзину` : `Товар успешно добавлен в корзину`}</h3>
           <div className="modal__wrapper">
               {isAddToBasket ?
-                <AddToBasket guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick}/>
+                <AddToBasket isDeleteFromBasket={isDeleteFromBasket} guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick}/>
                 :
                 <AddedToBasket onContinueBuyButtonClick={onContinueBuyButtonClick}/>
             

@@ -12,6 +12,7 @@ import {calculate3000PercentageFromFinalPrice, calculatePriceWithTenPercentDisco
 import { GuitarListPropType, ItemsInBasketPropType } from '../../types/types';
 import { DISCOUNT_700, DISCOUNT_3000 } from '../const/const';
 import PageNavigation from '../page-navigation/page-navigation';
+import ModalBasket from '../modals/modalBasket';
 
 const Basket = (props) => {
     const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost} = props;
@@ -19,6 +20,12 @@ const Basket = (props) => {
     console.log(`coupon`, coupon)
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [isCouponWrong, setIsCouponWrong] = useState(false);
+
+    //move to global state 
+    const onIsModalOpenChange = (isModalOpenCallback) => {
+        setIsModalDeleteOpen(isModalOpenCallback)
+      }
+      const [modalIndex, setModalIndex] = useState(null)
 
     console.log(`idItemsInBasketList`, idItemsInBasketList)
     const handleOnButtonPlusClick = (evt, guitarId) => {
@@ -64,12 +71,15 @@ const Basket = (props) => {
             <PageNavigation isBasket={true}/>
             <div className="guitars">
                 <ul className="list guitars__list">
-                    {guitars.map((guitarElement) => {
+                    {guitars.map((guitarElement, index) => {
                         if (idItemsInBasketList.includes(guitarElement.id)) {
                             return <li key={guitarElement.id} className="guitars__item">
                                 <button
                                     className="button guitar__button-delete"
-                                    // onClick={closePopUp}
+                                    onClick={() => {
+                                        setIsModalDeleteOpen(true)
+                                        setModalIndex(index)
+                                    }}
                                 >
                                     <CloseIcon />
                                 </button>
@@ -95,6 +105,7 @@ const Basket = (props) => {
                                             } else {
                                                 console.log(`down to 1`)
                                                 setIsModalDeleteOpen(true)
+                                                setModalIndex(index)
                                             }
                                             
                                         }}
@@ -149,6 +160,7 @@ const Basket = (props) => {
                 <p>Всего: {finalCost} ₽ </p>
                 <button className="button button--orange" type="submit">Оформить заказ</button>
             </div>
+            {isModalDeleteOpen ? <ModalBasket isDeleteFromBasket={true} isModalOpen={isModalDeleteOpen} guitarCard={guitars[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
         </section>
      </main>
      <Footer isMainPage={true}/>

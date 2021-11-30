@@ -8,6 +8,7 @@ const AddedToBasket = ({onContinueBuyButtonClick}) => {
         onContinueBuyButtonClick(returnFalseForCallBackFunction)
     }
      return <>
+         <h3 className="title modal__title">Товар успешно добавлен в корзину</h3>
         <Link to={Routes.MY_BASKET} className="button button--orange modal__button--basket">Перейти в корзину</Link>
         <button
             type="button"
