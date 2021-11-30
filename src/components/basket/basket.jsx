@@ -34,7 +34,7 @@ const Basket = (props) => {
                 <ul className="list guitars__list">
                     {guitars.map((guitarElement) => {
                         if (idItemsInBasketList.includes(guitarElement.id)) {
-                            return <li className="guitars__item">
+                            return <li key={guitarElement.id} className="guitars__item">
                                 <button
                                     className="button guitar__button-delete"
                                     // onClick={closePopUp}

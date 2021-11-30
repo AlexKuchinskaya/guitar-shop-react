@@ -98,8 +98,7 @@ const Catalog = ({guitars}) => {
                 <ul className="list catalog__list">
                     {mocksData && 
                       mocksData.map((mockGuitar, index) => {
-                        return <>
-                        <article className="catalog__card" key={mockGuitar.item}>
+                        return <article key={mockGuitar.id} className="catalog__card">
                           <div className="catalog__image">
                               <img src={returnGuitarPicture(mockGuitar.type)} className="catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />
                           </div>
@@ -120,7 +119,6 @@ const Catalog = ({guitars}) => {
                               > Купить</button>
                           </div>
                         </article>
-                      </>
                     })}
                 </ul>
                 {isModalOpen && modalIndex !== null ? <ModalBasket guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}

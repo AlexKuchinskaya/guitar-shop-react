@@ -238,7 +238,7 @@ const Filter = ({onFilterShowButtonClick}) => {
                     <h4 className="title filter__subtitle">Тип гитар</h4>
                     <ul className="list filter__list">
                         {guitarTypesCheckbox.map((guitarType, index) => {
-                            return <li className="filter-item">
+                            return <li className="filter-item" key={guitarType}>
                                 <label className="filter__label-checkbox">
                                     <input 
                                         className="filter__input filter__checkbox"
@@ -257,7 +257,7 @@ const Filter = ({onFilterShowButtonClick}) => {
                     <h4 className="title filter__subtitle">Количество струн</h4>
                     <ul className="list filter__list">
                         {guitarNumberOfStrings.map((stringNumber, index) => {
-                            return <li className="filter-item">
+                            return <li className="filter-item" key={stringNumber}>
                                 <label className="filter__label-checkbox">
                                     <input 
                                         className="filter__input filter__checkbox"
