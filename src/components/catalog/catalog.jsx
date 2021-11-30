@@ -90,6 +90,13 @@ const Catalog = ({guitars}) => {
     // console.log(`bodyElement`, bodyElement)
     // bodyElement.classListAdd(`body-page--hidden`)
   }
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isModalOpen]);
   return (
     <section className="catalog">
             <h2 className="title catalog__title">Каталог гитар</h2>
@@ -123,7 +130,7 @@ const Catalog = ({guitars}) => {
                         </article>
                     })}
                 </ul>
-                {isModalOpen && modalIndex !== null ? <ModalBasket guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
+                {isModalOpen && modalIndex !== null ? <ModalBasket isModalOpen={isModalOpen} guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
                 <ReactPaginate
                     breakLabel="..."
                     nextLabel="Далее"

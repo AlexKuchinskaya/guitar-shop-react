@@ -6,8 +6,9 @@ import {ReactComponent as CloseFormIcon} from '../../img/icon-cross.svg';
 import {returnFalseForCallBackFunction} from '../utils/utils';
 import {ESC_KEY} from '../const/const';
 import { GuitarPropType } from '../../types/types';
+import FocusTrap from 'focus-trap-react'
 
-const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
+const ModalBasket = ({isModalOpen, guitarCard, onIsModalOpenChange}) => {
   const [isAddToBasket, setIsAddToBasket] = useState(true)
   const popUpRef = useRef();
 
@@ -47,7 +48,8 @@ const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
   });
 
     return (
-      <div className="modal modal--show">
+      <FocusTrap active={isModalOpen}>
+      <div id="address-modal" aria-modal="true" className="modal modal--show">
         <div ref={popUpRef} className="modal__main">
           <h3 className="title modal__title">{isAddToBasket? `Добавить товар в корзину` : `Товар успешно добавлен в корзину`}</h3>
           <div className="modal__wrapper">
@@ -66,10 +68,12 @@ const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
         </button>
         </div>
       </div>
+      </FocusTrap>
     )
 };
 
 ModalBasket.propTypes = {
+  isModalOpen: PropTypes.bool.isRequired,
   guitarCard: GuitarPropType, 
   onIsModalOpenChange: PropTypes.func.isRequired,
 }

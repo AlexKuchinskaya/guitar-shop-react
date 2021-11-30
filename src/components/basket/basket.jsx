@@ -126,7 +126,7 @@ const Basket = (props) => {
                 </ul>
                 <div className="coupon">
                     <h3 className="coupon__title">Промокод на скидку</h3>
-                    <label className="coupon__label" htmlFor="coupon">Введите свой промокод, если он у вас есть.</label>
+                    <label className="coupon__label" htmlFor="coupon">Введите свой промокод, если он у вас есть.
                     {isCouponWrong ? 
                      <span className="coupon__wrong">Промокод не действителен<sup>*</sup></span> 
                      :
@@ -139,6 +139,7 @@ const Basket = (props) => {
                         value={coupon}
                         onChange={handleOnCouponInputChange}
                     />
+                     </label>
                     <button 
                         type="button"
                         className="button button--grey coupon__button"
@@ -181,7 +182,7 @@ Basket.propTypes = {
     currentBasketList: ItemsInBasketPropType,
     onAddtoBasketButtonClick: PropTypes.func.isRequired,
     onDeleteFromBasketButtonClick: PropTypes.func.isRequired,
-    onFinalCosteChange: PropTypes.func.isRequired,
+    onFinalCostChange: PropTypes.func.isRequired,
     finalCost: PropTypes.number.isRequired,
 }
   
