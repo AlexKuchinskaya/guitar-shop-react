@@ -31,6 +31,7 @@
     transform: translate(-50%, -50%);
     background-color: $basic-white;
     padding: 30px 50px 32px; 
+    border-radius: 4px;
 }
 
 .modal__button-close {
@@ -66,10 +67,12 @@
 
 .modal__button {
     box-sizing: border-box;
-    background-color: $orange;
     padding: 14px 13px;
     width: 220px;
-    color: $basic-white;
+
+    &--basket {
+        color: $middle-grey;
+    }
 
 }
 

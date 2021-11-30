@@ -44,3 +44,33 @@
 .header__extra-count {
     color: $red;
 }
+
+.header__extra-link {
+    &--map {
+        &:hover, &:focus {
+            path {
+                stroke: $light-black;    
+            }
+            
+        }
+        &:active {
+            path {
+                stroke: $grey-click;
+            }
+        }
+    }
+    &--search, &--basket {
+        &:hover, &:focus {
+            path {
+                fill: $light-black;    
+            }
+            
+        }
+        &:active {
+            path {
+                fill: $grey-click;
+            }
+        }
+    }
+
+}

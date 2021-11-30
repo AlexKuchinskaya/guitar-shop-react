@@ -28,7 +28,7 @@ const AddToBasket = ({guitarCard, currentbasketState, onAddToBasketClick, onAddt
                 </div>
             </div>
             <button
-            className="button modal__button"
+            className="button button--orange modal__button"
             onClick={handleAddToBasket}
             >
             Добавить в корзину

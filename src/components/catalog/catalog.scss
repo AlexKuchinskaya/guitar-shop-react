@@ -41,8 +41,6 @@
 
 .catalog__more-info, .catalog__buy {
     box-sizing: border-box;
-    background-color: $light-grey;
-    color: $basic-white;
     font-size: 12px;
     line-height: 15px;
     font-weight: bold;
@@ -52,8 +50,17 @@
     border-radius: 2px;
 }
 
+.catalog__more-info {
+    &:hover {
+        background-color: $pagination-grey;
+    }
+
+    &:active {
+        background-color: $normal-grey;
+    } 
+}
+
 .catalog__buy {
-    background-color: $orange;
     padding-left: 12px;
     position: relative;
     &::before {

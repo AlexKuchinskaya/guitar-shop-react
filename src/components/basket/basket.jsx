@@ -11,6 +11,7 @@ import './basket.scss';
 import {calculate3000PercentageFromFinalPrice, calculatePriceWithTenPercentDiscount, returnGuitarPictureSmall} from '../utils/utils';
 import { GuitarListPropType, ItemsInBasketPropType } from '../../types/types';
 import { DISCOUNT_700, DISCOUNT_3000 } from '../const/const';
+import PageNavigation from '../page-navigation/page-navigation';
 
 const Basket = (props) => {
     const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost} = props;
@@ -60,6 +61,7 @@ const Basket = (props) => {
         <h1 className="visually-hidden">Your Guitar Shop Basket</h1>
         <section className="basket container-site">
             <h2 className="title basket__title">Корзина</h2>
+            <PageNavigation isBasket={true}/>
             <div className="guitars">
                 <ul className="list guitars__list">
                     {guitars.map((guitarElement) => {
@@ -139,12 +141,12 @@ const Basket = (props) => {
                     />
                     <button 
                         type="button"
-                        className="button coupon__button"
+                        className="button button--grey coupon__button"
                         onClick={handleOnAddCouponButtonClick}
                     >Применить купон</button>
                 </div>
                 <p>Всего: {finalCost} ₽ </p>
-                <button type="submit">Оформить заказ</button>
+                <button className="button button--orange" type="submit">Оформить заказ</button>
             </div>
         </section>
      </main>

@@ -277,7 +277,7 @@ const Filter = ({onFilterShowButtonClick}) => {
           </form>
           <button 
             type="submit"
-            className="button filter__button-show"
+            className="button button--grey filter__button-show"
             onClick={handleOnSubmitForm}
         >показать</button>
       </div>

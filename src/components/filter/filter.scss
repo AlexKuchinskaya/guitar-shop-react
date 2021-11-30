@@ -38,6 +38,12 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    &:hover + .filter__check-box {
+        border-color: $pagination-grey;
+    }
+    &:active + .filter__check-box {
+        border-color: $button-grey;
+    }
     &:checked + .filter__check-box {
         &::before {
             content: "";
@@ -54,9 +60,9 @@
             background-size: auto 100%;
         }
     }
-    &:focus + .filter__check-box {
-        border-color: blue;
-    }
+    // &:focus + .filter__check-box {
+    //     border-color: blue;
+    // }
     &:disabled + .filter__check-box {
         background-color: $checkbox-disabled;
         border-color: $checkbox-border;

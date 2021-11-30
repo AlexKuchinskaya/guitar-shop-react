@@ -11,6 +11,7 @@ import ModalBasket from '../modals/modalBasket';
 // import Pagination from '../pagination/pagination';
 import ReactPaginate from 'react-paginate';
 import { GuitarListPropType } from '../../types/types';
+import PageNavigation from '../page-navigation/page-navigation';
 
 
 const Catalog = ({guitars}) => {
@@ -92,6 +93,7 @@ const Catalog = ({guitars}) => {
   return (
     <section className="catalog">
             <h2 className="title catalog__title">Каталог гитар</h2>
+            <PageNavigation isBasket={false}/>
             <Filter onFilterShowButtonClick={onFilterShowButtonClick}/>
             <CatalogSort onSortTypeChange={onSortTypeChange} />
             <div className="catalog__wrapper">
@@ -111,10 +113,10 @@ const Catalog = ({guitars}) => {
                               <span className="catalog__guitar-price">{formatPriceWithSpaces(mockGuitar.price)} ₽</span>
                           </div>
                           <div className="catalog__card-container catalog__card-container--rating--buttons">
-                              <a href="!0" className="catalog__more-info">Подробнее</a>
+                              <a href="#0" className="button button--grey catalog__more-info">Подробнее</a>
                               <button
                                 type="button"
-                                className="button catalog__buy"
+                                className="button button--orange catalog__buy"
                                 onClick={() => handleButtonBuyOnClick(index)}
                               > Купить</button>
                           </div>

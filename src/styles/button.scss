@@ -8,4 +8,38 @@
     border: none;
     // font-family: "Roboto", "Arial", sans-serif;
     // font-weight: 500;
+    border-radius: 2px;
+    color: $basic-white;
+    font-weight: bold;
+    &--orange {
+        background-color: $orange;
+        &:hover {
+            background-color: $orange-bright;
+        } 
+        &:active {
+            background-color: $orange-dark;
+        } 
+    }
+    &--grey {
+        background-color: $button-grey;
+        &:hover {
+            background-color: $pagination-grey;
+        }
+        &:active {
+            background-color: $normal-grey;
+        } 
+    }
+
+    &--transparent {
+        border: 1px solid $pagination-grey;
+        color: $pagination-grey;
+        &:hover {
+            background-color: $pagination-grey;
+            color: $basic-white;
+        }
+        &:active {
+            background-color: $normal-grey;
+            color: $basic-white;
+        } 
+    }
 }

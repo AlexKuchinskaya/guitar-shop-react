@@ -21,6 +21,31 @@ export const GuitarTypes = {
   ELECTRO: `электрогитара`,
   UKULELE: `укулеле`
 }
+export const Routes = {
+  MAIN: `/`,
+  MY_BASKET: `/mybasket`,
+};
+export const pageNavigationLinks = [
+    {
+      id: 1,
+      linkName: `Главная`,
+      route: Routes.MAIN,
+      class: `main`
+    },
+    {
+      id: 2,
+      linkName: `Каталог`,
+      route: Routes.MAIN,
+      class: `catalog`
+    },
+    {
+      id: 3,
+      linkName: `Оформляем`,
+      route: Routes.MY_BASKET,
+      class: `basket`
+    },
+]
+
 export const guitarTypesCheckbox = [`акустическая гитара`, `электрогитара`, `укулеле`]
 export const guitarNumberOfStrings = [4, 6, 7, 12]
 export const allNavSiteLinks = [
@@ -127,9 +152,3 @@ export const footerInfoLinks = [
     id: 5,
   },
 ]
-
-
-export const Routes = {
-  MAIN: `/`,
-  MY_BASKET: `/mybasket`,
-};
