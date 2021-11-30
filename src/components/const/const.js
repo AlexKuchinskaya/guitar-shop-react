@@ -1,4 +1,7 @@
 export const ESC_KEY = `Escape`;
+export const DISCOUNT_700 = 700;
+export const DISCOUNT_10 = 10;
+export const DISCOUNT_3000 = 3000;
 export const STARS_RATING = [1, 2, 3, 4, 5];
 
 export const ExtraLinks = {

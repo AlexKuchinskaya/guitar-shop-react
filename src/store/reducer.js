@@ -6,7 +6,8 @@ const { mocks } = require("../components/mocks/mock");
 const initialState = {
     guitarList: mocks,
     itemsInBasket: 0,
-    idItemsInBasketList: []
+    idItemsInBasketList: [],
+    finalCost: 47000,
 }
 
 const checkArrayForElement = (elementList, elementToCompare) => {
@@ -32,6 +33,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           itemsInBasket: action.payload,
           idItemsInBasketList: checkArrayForElement(state.idItemsInBasketList, action.payloadTwo)
+        };
+        case ActionType.SET_FINAL_COST:
+        return {
+          ...state,
+          finalCost: action.payload,
         };
       default:
         return state;

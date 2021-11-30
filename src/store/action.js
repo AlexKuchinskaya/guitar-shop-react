@@ -1,6 +1,7 @@
 export const ActionType = {
     ADD_TO_BASKET: `guitars/addtobasket`,
-    DELETE_FROM_BASKET: `guitars/deletefrombasket`
+    DELETE_FROM_BASKET: `guitars/deletefrombasket`,
+    SET_FINAL_COST: `guitars/setfinalcost`
 };
   
 export const ActionCreator = {
@@ -13,5 +14,9 @@ export const ActionCreator = {
         type: ActionType.DELETE_FROM_BASKET,
         payload: guitar,
         payloadTwo: id,
+    }),
+    setFinalCost: (price) => ({
+        type: ActionType.SET_FINAL_COST,
+        payload: price,
     }),
 };

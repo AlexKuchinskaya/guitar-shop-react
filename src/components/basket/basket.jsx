@@ -8,12 +8,17 @@ import {ReactComponent as CloseIcon} from '../../img/icon-cross.svg';
 import {ReactComponent as MinusIcon} from '../../img/minus-icon.svg';
 import {ReactComponent as PlusIcon} from '../../img/plus-icon.svg';
 import './basket.scss';
-import {returnGuitarPictureSmall} from '../utils/utils';
+import {calculate3000PercentageFromFinalPrice, calculatePriceWithTenPercentDiscount, returnGuitarPictureSmall} from '../utils/utils';
 import { GuitarListPropType, ItemsInBasketPropType } from '../../types/types';
+import { DISCOUNT_700, DISCOUNT_3000 } from '../const/const';
 
 const Basket = (props) => {
-    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick} = props;
+    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost} = props;
+    const [coupon, setCoupon] = useState(`Ваш купон`)
+    console.log(`coupon`, coupon)
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
+    const [isCouponWrong, setIsCouponWrong] = useState(false);
+
     console.log(`idItemsInBasketList`, idItemsInBasketList)
     const handleOnButtonPlusClick = (evt, guitarId) => {
         evt.preventDefault()
@@ -23,6 +28,31 @@ const Basket = (props) => {
         console.log(`guitarId`, guitarId)
         evt.preventDefault()
         onDeleteFromBasketButtonClick(currentBasketList - 1, guitarId)
+    }
+    const handleOnCouponInputChange = (evt) => {
+        if (isCouponWrong === true) {
+            setIsCouponWrong(false)
+        }
+        setCoupon(evt.target.value)
+    }
+   
+    const handleOnAddCouponButtonClick = (evt) => {
+        evt.preventDefault();
+        let finalPriceWithDiscount;
+        let percentage3000fromFinalPrice = calculate3000PercentageFromFinalPrice(finalCost)
+        console.log(`percentage3000fromFinalPrice`, percentage3000fromFinalPrice);
+        if (coupon === `GITARAHIT`) {
+            finalPriceWithDiscount = calculatePriceWithTenPercentDiscount(finalCost);
+            onFinalCostChange(finalPriceWithDiscount);
+        } else if (coupon === `SUPERGITARA`) {
+            finalPriceWithDiscount = finalCost - DISCOUNT_700; 
+            onFinalCostChange(finalPriceWithDiscount);
+        } else if (coupon === `GITARA2020` && percentage3000fromFinalPrice < 30) {
+            finalPriceWithDiscount = finalCost - DISCOUNT_3000; 
+            onFinalCostChange(finalPriceWithDiscount);
+        } else {
+            setIsCouponWrong(true)
+        }
     }
     return <>
      <Header isMainPage={false}/>
@@ -92,14 +122,28 @@ const Basket = (props) => {
                         return ``
                     })}
                 </ul>
-                <div className="promo">
-                    <h3 className="promo__title">Промокод на скидку</h3>
-                    <p className="promo__in">Введите свой промокод, если он у вас есть.</p>
-                    <label></label>
-                    <input type="text"/>
-                    <button>Применить купон</button>
+                <div className="coupon">
+                    <h3 className="coupon__title">Промокод на скидку</h3>
+                    <label className="coupon__label" htmlFor="coupon">Введите свой промокод, если он у вас есть.</label>
+                    {isCouponWrong ? 
+                     <span className="coupon__wrong">Промокод не действителен<sup>*</sup></span> 
+                     :
+                     null
+                    }
+                    <input
+                        type="text"
+                        id="coupon"
+                        className={`coupon__input ${isCouponWrong ? `coupon__input--error` : ``}`}
+                        value={coupon}
+                        onChange={handleOnCouponInputChange}
+                    />
+                    <button 
+                        type="button"
+                        className="button coupon__button"
+                        onClick={handleOnAddCouponButtonClick}
+                    >Применить купон</button>
                 </div>
-                <p>Всего: ₽ </p>
+                <p>Всего: {finalCost} ₽ </p>
                 <button type="submit">Оформить заказ</button>
             </div>
         </section>
@@ -112,6 +156,7 @@ const mapStateToProps = (state) => ({
     guitars: state.guitarList,
     idItemsInBasketList: state.idItemsInBasketList,
     currentBasketList: state.itemsInBasket,
+    finalCost: state.finalCost,
 
 });
 
@@ -121,6 +166,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onDeleteFromBasketButtonClick(guitarItem, id) {
         dispatch(ActionCreator.deleteFromBasket(guitarItem, id));
+    },
+    onFinalCostChange(price) {
+        dispatch(ActionCreator.setFinalCost(price));
       },
   
 });
@@ -131,6 +179,8 @@ Basket.propTypes = {
     currentBasketList: ItemsInBasketPropType,
     onAddtoBasketButtonClick: PropTypes.func.isRequired,
     onDeleteFromBasketButtonClick: PropTypes.func.isRequired,
+    onFinalCosteChange: PropTypes.func.isRequired,
+    finalCost: PropTypes.number.isRequired,
 }
   
 export {Basket};

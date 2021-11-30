@@ -1,4 +1,4 @@
-import { GuitarTypes } from "../const/const";
+import { DISCOUNT_10, DISCOUNT_3000, GuitarTypes } from "../const/const";
 
 export const formatPriceWithSpaces = (value) => {
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -45,3 +45,11 @@ export const returnGuitarPictureSmall = (guitarType) => {
         return ``;
     }
   }
+
+export  const calculatePriceWithTenPercentDiscount = (priceToApply) => {
+    return priceToApply - ((priceToApply * DISCOUNT_10) / 100)
+}
+
+export const calculate3000PercentageFromFinalPrice = (finalPrice) => {
+    return (DISCOUNT_3000 * 100) / finalPrice;
+}

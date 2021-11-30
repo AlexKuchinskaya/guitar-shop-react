@@ -89,3 +89,18 @@
         font-weight: bold;
     }
 }
+
+.coupon__label {
+    display: block;
+}
+
+.coupon__input {
+    &--error {
+        border-color: red;
+    }
+}
+
+.coupon__wrong {
+    color: red;
+    display: block;
+}
