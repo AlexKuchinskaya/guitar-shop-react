@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {connect} from 'react-redux';
+import PropTypes from "prop-types";
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import {ActionCreator} from '../../store/action';
@@ -8,6 +9,7 @@ import {ReactComponent as MinusIcon} from '../../img/minus-icon.svg';
 import {ReactComponent as PlusIcon} from '../../img/plus-icon.svg';
 import './basket.scss';
 import {returnGuitarPictureSmall} from '../utils/utils';
+import { GuitarListPropType, ItemsInBasketPropType } from '../../types/types';
 
 const Basket = (props) => {
     const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick} = props;
@@ -23,7 +25,7 @@ const Basket = (props) => {
         onDeleteFromBasketButtonClick(currentBasketList - 1, guitarId)
     }
     return <>
-     <Header />
+     <Header isMainPage={false}/>
      <main className="main">
         <h1 className="visually-hidden">Your Guitar Shop Basket</h1>
         <section className="basket container-site">
@@ -102,7 +104,7 @@ const Basket = (props) => {
             </div>
         </section>
      </main>
-     <Footer />
+     <Footer isMainPage={true}/>
     </>
 }
 
@@ -112,7 +114,7 @@ const mapStateToProps = (state) => ({
     currentBasketList: state.itemsInBasket,
 
 });
-export {Basket};
+
 const mapDispatchToProps = (dispatch) => ({
     onAddtoBasketButtonClick(guitarItem, id) {
       dispatch(ActionCreator.addToBasket(guitarItem, id));
@@ -122,4 +124,14 @@ const mapDispatchToProps = (dispatch) => ({
       },
   
 });
+
+Basket.propTypes = {
+    guitars: GuitarListPropType,
+    idItemsInBasketList: PropTypes.arrayOf(PropTypes.number),
+    currentBasketList: ItemsInBasketPropType,
+    onAddtoBasketButtonClick: PropTypes.func.isRequired,
+    onDeleteFromBasketButtonClick: PropTypes.func.isRequired,
+}
+  
+export {Basket};
 export default connect(mapStateToProps, mapDispatchToProps)(Basket);

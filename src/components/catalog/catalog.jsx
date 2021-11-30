@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react';
-// import { mocks } from '../mocks/mock';
 import { formatPriceWithSpaces } from '../utils/utils';
 import {GuitarTypes} from '../const/const';
-// import { ReactComponent as LogoIconFooter } from '../../img/logo-footer.svg';
+import {connect} from 'react-redux';
 import './catalog.scss';
 import './pagination.scss';
 import CatalogStarRating from './catalog-star-rating';
 import CatalogSort from './catalog-sort';
 import Filter from '../filter/filter';
-import AddToBasket from '../modals/add-to-basket';
 import ModalBasket from '../modals/modalBasket';
 // import Pagination from '../pagination/pagination';
 import ReactPaginate from 'react-paginate';
+import { GuitarListPropType } from '../../types/types';
 
 
 const Catalog = ({guitars}) => {
@@ -21,6 +20,7 @@ const Catalog = ({guitars}) => {
   // const lastGuitarIndex = currentPage * guitarPerPage;
   // const firstGuitarIndex = lastGuitarIndex - guitarPerPage;
   const [mocksData, setMocksData] = useState(guitars)
+  console.log(`mocksData`, mocksData)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalIndex, setModalIndex] = useState(null)
   // const currentGuitarListPerPage = mocksData.slice(firstGuitarIndex, lastGuitarIndex)
@@ -149,5 +149,13 @@ const Catalog = ({guitars}) => {
         </section>
   )
 };
+const mapStateToProps = (state) => ({
+  guitars: state.guitarList,
+});
 
-export default Catalog;
+Catalog.propTypes = {
+  guitars: GuitarListPropType,
+}
+
+export {Catalog};
+export default connect(mapStateToProps)(Catalog);

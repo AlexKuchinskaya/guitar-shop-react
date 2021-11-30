@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import PropTypes from "prop-types";
 import { GuitarTypes, guitarTypesCheckbox, guitarNumberOfStrings } from '../const/const';
-import { mocks } from '../mocks/mock';
 import './filter.scss';
-// import './logo.scss';
 
 const Filter = ({onFilterShowButtonClick}) => {
     const [priceFrom, setPriceFrom] = useState(1000);
@@ -284,5 +283,9 @@ const Filter = ({onFilterShowButtonClick}) => {
       </div>
   )
 };
+
+Filter.propTypes = {
+    onFilterShowButtonClick: PropTypes.func.isRequired,
+}
 
 export default Filter;

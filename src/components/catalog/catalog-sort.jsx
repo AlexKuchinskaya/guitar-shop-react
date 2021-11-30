@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from "prop-types";
 import { sortGuitarsByPriceFromLowestToHighest, sortGuitarsByReviewsFromLowestToHighest, sortGuitarsByPriceFromHighestToLowest, sortGuitarsByReviewsFromHighestToLowest } from '../utils/utils';
 import { ReactComponent as UpIcon } from '../../img/icon-arrow-up.svg';
 import { ReactComponent as DownIcon } from '../../img/icon-arrow-down.svg';
@@ -51,5 +52,9 @@ const CatalogSort = ({onSortTypeChange}) => {
  
   </>
 };
+
+CatalogSort.propTypes = {
+    onSortTypeChange: PropTypes.func.isRequired,
+}
 
 export default CatalogSort;

@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 import { Routes } from '../const/const';
 import { returnFalseForCallBackFunction } from "../utils/utils";
+
 const AddedToBasket = ({onContinueBuyButtonClick}) => {
     const handleOnContinueBuyClick = () => {
         onContinueBuyButtonClick(returnFalseForCallBackFunction)
@@ -14,5 +16,9 @@ const AddedToBasket = ({onContinueBuyButtonClick}) => {
         >Продолжить покупки</button>
     </>
 };
-   
+
+AddedToBasket.propTypes = {
+    onContinueBuyButtonClick: PropTypes.func.isRequired,
+}
+
 export default AddedToBasket;

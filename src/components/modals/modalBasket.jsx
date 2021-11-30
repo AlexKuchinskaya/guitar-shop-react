@@ -1,9 +1,11 @@
 import React, {useEffect, useState, useRef} from 'react';
+import PropTypes from "prop-types";
 import AddToBasket from "./add-to-basket";
 import AddedToBasket from "./added-to-basket";
 import {ReactComponent as CloseFormIcon} from '../../img/icon-cross.svg';
 import {returnFalseForCallBackFunction} from '../utils/utils';
 import {ESC_KEY} from '../const/const';
+import { GuitarPropType } from '../../types/types';
 
 const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
   const [isAddToBasket, setIsAddToBasket] = useState(true)
@@ -66,5 +68,10 @@ const ModalBasket = ({guitarCard, onIsModalOpenChange}) => {
       </div>
     )
 };
-  
+
+ModalBasket.propTypes = {
+  guitarCard: GuitarPropType, 
+  onIsModalOpenChange: PropTypes.func.isRequired,
+}
+
 export default ModalBasket;

@@ -1,14 +1,16 @@
 import React from 'react';
+import { IsMainPagePropType } from '../../types/types';
 import {footerCatalogLinks, footerInfoLinks} from '../const/const'
 import Logo from '../logo/logo';
 import FooterSocial from './footer-social';
 import './footer.scss';
-const Footer = () => {
+
+const Footer = ({isMainPage}) => {
     return (
         <footer className="footer" id="footer">
           <div className="footer__wrapper container-site">
               <div className="footer__section footer__section--social">
-                <Logo isFooter={true}/>
+                <Logo isFooter={true} isMainPage={isMainPage}/>
                 <FooterSocial />
               </div>
               <div className="footer__container">
@@ -67,6 +69,10 @@ const Footer = () => {
       </div>
         </footer>
     );
-    }    
+    } 
+   
+Footer.propTypes = {
+    isMainPage: IsMainPagePropType,
+}
 
 export default Footer;

@@ -1,15 +1,16 @@
 import React from 'react';
-import { ReactComponent as MapIcon } from '../../img/icon-map.svg';
-import { ReactComponent as SearchIcon } from '../../img/icon-search.svg';
-import { ReactComponent as BasketIcon } from '../../img/icon-basket.svg';
-import {extraLinks, ExtraLinks} from '../const/const';
+import {ReactComponent as MapIcon} from '../../img/icon-map.svg';
+import {ReactComponent as SearchIcon} from '../../img/icon-search.svg';
+import {ReactComponent as BasketIcon} from '../../img/icon-basket.svg';
+import {extraLinks, ExtraLinks, Routes} from '../const/const';
 import Logo from '../logo/logo';
 import Menu from '../menu/menu';
 import {connect} from 'react-redux';
-// import ModalLogin from '../modal-login/modal-login';
 import './header.scss';
+import {IsMainPagePropType, ItemsInBasketPropType} from '../../types/types';
+import {Link} from 'react-router-dom';
 
-const Header = ({isMenuOpened = true, basketItems}) => {
+const Header = ({basketItems, isMainPage}) => {
     const returnSvg = (link) => {
         switch (link) {
           case ExtraLinks.MAP:
@@ -23,20 +24,20 @@ const Header = ({isMenuOpened = true, basketItems}) => {
         }
     }
     return <>
-        <header className={`header ${isMenuOpened ? `header--opened` : `header--closed`}`}>
+        <header className="header">
             <div className="container-site header__container">
-                <Logo isFooter={false}/>
+                <Logo isFooter={false} isMainPage={isMainPage}/>
                 <Menu />
                 <div className="header__extra-links">
                     <ul className="list header__extra-list">
                         {extraLinks.map((siteLink) => {
                         return <li key={siteLink.id} className="header__extra-item">
-                            <a href="!#" className={`header__extra-link header__extra-link--${siteLink.linkName}`} aria-label={siteLink.linkName}>
+                            <Link to={siteLink.id === 3 ? Routes.MY_BASKET : `#0`} className={`header__extra-link header__extra-link--${siteLink.linkName}`} aria-label={siteLink.linkName}>
                             {returnSvg(siteLink.id)}
                             {siteLink.id === 3 ? <span className="header__extra-count">
                                 <sup>{basketItems > 0 ? basketItems : null}</sup>
                             </span> : ``}
-                            </a>
+                            </Link>
                         </li>;
                         })}
                     </ul>
@@ -48,5 +49,11 @@ const Header = ({isMenuOpened = true, basketItems}) => {
 const mapStateToProps = (state) => ({
     basketItems: state.itemsInBasket,
 });
+
+Header.propTypes = {
+    basketItems: ItemsInBasketPropType,
+    isMainPage: IsMainPagePropType,
+}
+
 export {Header};
 export default connect(mapStateToProps)(Header);
