@@ -52,7 +52,7 @@ const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpen
         <div ref={popUpRef} className="modal__main">
           <div className="modal__wrapper">
               {isAddToBasket ?
-                <AddToBasket isDeleteFromBasket={isDeleteFromBasket} guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick}/>
+                <AddToBasket isDeleteFromBasket={isDeleteFromBasket} guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick} onContinueBuyButtonClick={onContinueBuyButtonClick}/>
                 :
                 <AddedToBasket onContinueBuyButtonClick={onContinueBuyButtonClick}/>
             

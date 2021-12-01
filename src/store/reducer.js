@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
             action.payloadTwo,
           ],
         };
-        case ActionType.DELETE_FROM_BASKET:
+        case ActionType.DECREASE_GUITAR_QUANTITY:
         return {
           ...state,
           itemsInBasket: action.payload,
@@ -38,6 +38,12 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           finalCost: action.payload,
+        };
+        case ActionType.DELETE_FROM_BASKET:
+        return {
+          ...state,
+          itemsInBasket: state.idItemsInBasketList.filter((idItem) => idItem !== action.payload).length,
+          idItemsInBasketList: state.idItemsInBasketList.filter((idItem) => idItem !== action.payload),
         };
       default:
         return state;

@@ -90,13 +90,13 @@ const Catalog = ({guitars}) => {
     // console.log(`bodyElement`, bodyElement)
     // bodyElement.classListAdd(`body-page--hidden`)
   }
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isModalOpen]);
+  // useEffect(() => {
+  //   if (isModalOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'unset';
+  //   }
+  // }, [isModalOpen]);
   return (
     <section className="catalog">
             <h2 className="title catalog__title">Каталог гитар</h2>

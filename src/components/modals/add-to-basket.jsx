@@ -4,7 +4,7 @@ import {ActionCreator} from '../../store/action';
 import {returnFalseForCallBackFunction, returnGuitarPictureSmall} from '../utils/utils';
 import './modal.scss';
 
-const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList }) => {
+const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList, onContinueBuyButtonClick, onDeleteFromBasketClick }) => {
     console.log(`idItemsInBasketListBefore`, idItemsInBasketList)
     const handleAddToBasket = () => {
         console.log(`guitarCard.id`, guitarCard.id)
@@ -13,6 +13,14 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
         
     }
     console.log(`idItemsInBasketList`, idItemsInBasketList)
+    const handleDeleteFromBasket = (evt, guitarId) => {
+        evt.preventDefault();
+        onDeleteFromBasketClick(guitarId)
+        onContinueBuyButtonClick(returnFalseForCallBackFunction)
+    }
+    const handleOnContinueBuyClick = () => {
+        onContinueBuyButtonClick(returnFalseForCallBackFunction)
+    }
   return <>
             <h3 className="title modal__title">{isDeleteFromBasket? `Удалить этот товар?` : `Добавить товар в корзину`}</h3>
             <div className="modal__container">
@@ -33,14 +41,14 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
             <div className="modal__buttons-wrapper">
                 <button
                 className="button button--orange modal__button"
-                // onClick={handleAddToBasket}
+                onClick={(evt) => handleDeleteFromBasket(evt, guitarCard.id)}
             >
             Удалить товар
             </button>
                 <button
                     type="button"
                     className="button button--transparent modal__button modal__button--continue"
-                    // onClick={handleOnContinueBuyClick}
+                    onClick={handleOnContinueBuyClick}
                 >Продолжить покупки</button>
             </div>
             : 
@@ -63,6 +71,9 @@ const mapDispatchToProps = (dispatch) => ({
     onAddtoBasketButtonClick(guitarItem, id) {
       dispatch(ActionCreator.addToBasket(guitarItem, id));
     },
+    onDeleteFromBasketClick(id) {
+        dispatch(ActionCreator.deleteFromBasket(id));
+      },
   
 });
 export {AddToBasket};

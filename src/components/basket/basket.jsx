@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import Header from '../header/header';
@@ -16,6 +16,7 @@ import ModalBasket from '../modals/modalBasket';
 
 const Basket = (props) => {
     const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost} = props;
+
     const [coupon, setCoupon] = useState(`Ваш купон`)
     console.log(`coupon`, coupon)
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
@@ -62,6 +63,13 @@ const Basket = (props) => {
             setIsCouponWrong(true)
         }
     }
+    // useEffect(() => {
+    //     if (isModalDeleteOpen) {
+    //       document.body.style.overflow = 'hidden';
+    //     } else {
+    //       document.body.style.overflow = 'unset';
+    //     }
+    //   }, [isModalDeleteOpen]);
     return <>
      <Header isMainPage={false}/>
      <main className="main">
@@ -103,7 +111,6 @@ const Basket = (props) => {
                                             if (idItemsInBasketList.filter(item => item === guitarElement.id).length > 1) {
                                                 onDeleteFromBasketButtonClick(currentBasketList - 1, guitarElement.id)
                                             } else {
-                                                console.log(`down to 1`)
                                                 setIsModalDeleteOpen(true)
                                                 setModalIndex(index)
                                             }
@@ -180,11 +187,12 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(ActionCreator.addToBasket(guitarItem, id));
     },
     onDeleteFromBasketButtonClick(guitarItem, id) {
-        dispatch(ActionCreator.deleteFromBasket(guitarItem, id));
+        dispatch(ActionCreator.decreaseGuitarQuantity(guitarItem, id));
     },
     onFinalCostChange(price) {
         dispatch(ActionCreator.setFinalCost(price));
-      },
+    },
+
   
 });
 
