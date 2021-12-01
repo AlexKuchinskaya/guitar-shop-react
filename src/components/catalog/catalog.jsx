@@ -98,10 +98,12 @@ const Catalog = ({guitars}) => {
   //   }
   // }, [isModalOpen]);
   return (
-    <section className="catalog">
+    <section className="catalog container-site">
             <h2 className="title catalog__title">Каталог гитар</h2>
             <PageNavigation isBasket={false}/>
+            <div className="catalog__flex">
             <Filter onFilterShowButtonClick={onFilterShowButtonClick}/>
+            <div className="catalog__items-container">
             <CatalogSort onSortTypeChange={onSortTypeChange} />
             <div className="catalog__wrapper">
                 <ul className="list catalog__list">
@@ -115,11 +117,11 @@ const Catalog = ({guitars}) => {
                               <CatalogStarRating />
                               <span className="catalog__guitar-reviews">{mockGuitar.reviewNumber}</span>
                           </div>
-                          <div className="catalog__card-container catalog__card-container--rating--info">
+                          <div className="catalog__card-container catalog__card-container--rating-info">
                               <span className="catalog__guitar-name">{mockGuitar.name}</span>
                               <span className="catalog__guitar-price">{formatPriceWithSpaces(mockGuitar.price)} ₽</span>
                           </div>
-                          <div className="catalog__card-container catalog__card-container--rating--buttons">
+                          <div className="catalog__card-container catalog__card-container--rating-buttons">
                               <a href="#0" className="button button--grey catalog__more-info">Подробнее</a>
                               <button
                                 type="button"
@@ -152,6 +154,8 @@ const Catalog = ({guitars}) => {
                     nextLinkClassName={"pagination__link pagination__link--next"}
                 />
                 {/* <Pagination guitarPerPage={guitarPerPage} totalGuitars={mocksData.length} onPageNumberClick={onPageNumberClick}/> */}
+            </div>
+            </div>
             </div>
         </section>
   )

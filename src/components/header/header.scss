@@ -1,15 +1,17 @@
 @import '../../styles/variables.scss';
 @import '../../styles/global.scss';
 @import '../../styles/container-site.scss';
-@import '../../styles/list.scss';
+
 
 .header {
     box-sizing: border-box;
     background-color: $light-grey;
     min-height: 110px;
-    padding: 20px 0;
+    padding: 18px 0;
 }
-
+.header__extra-links {
+    width: 147px;
+}
 .header__container {
     display: flex;
     justify-content: space-between;
@@ -19,14 +21,22 @@
 .header__extra-list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
 }
 
 .header__extra-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
+    width: 44px;
     min-height: 40px;
+    &--basket {
+        width: 57px;
+    }
     svg {
         
         // width: 40px;

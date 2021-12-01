@@ -1,5 +1,6 @@
 // import Footer from './components/footer/footer';
 // import Header from './components/header/header';
+import '../src/styles/App.scss';
 import {Switch, Route, Router as BrowserRouter} from 'react-router-dom';
 import browserHistory from "./browser-history";
 import { Routes } from './components/const/const';

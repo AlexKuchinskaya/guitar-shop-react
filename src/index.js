@@ -4,6 +4,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 // import './index.css';
+import '../src/styles/App.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {reducer} from './store/reducer';

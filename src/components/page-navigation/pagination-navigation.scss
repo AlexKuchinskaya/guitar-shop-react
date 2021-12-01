@@ -1,11 +1,16 @@
 @import '../../styles/variables.scss';
 
 .navigation-site {
-    margin-top: 20px;
+    margin-top: 31px;
+    margin-bottom: 49px;
 }
 .navigation-site__list {
     display: flex;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
 }
 
 .navigation-site__item {

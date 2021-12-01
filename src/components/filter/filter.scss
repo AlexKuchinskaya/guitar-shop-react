@@ -1,17 +1,26 @@
 @import '../../styles/variables.scss';
 // @import '../../styles/title.scss';
-@import '../../styles/list.scss';
 
+.filter {
+    width: 208px;
+}
+
+.filter__container {
+    border-top: 1px solid $light-grey;
+    margin-top: 30px;
+}
 
 .filter-wrapper {
     padding: 30px 0;
-    border-bottom: 1px solid $normal-grey;
+    border-bottom: 1px solid $light-grey;
     &:last-child {
         border-bottom: none;
     }
 }
 .filter__subtitle {
     margin-bottom: 26px;
+    font-size: 18px;
+    line-height: 21px;
 }
 .filter-item {
     margin-bottom: 17px;
@@ -21,6 +30,36 @@
 }
 .filter__price-container {
     display: flex;
+    margin-top: 24px;
+    position: relative;
+    &::before {
+        content: "—";
+        position: absolute;
+        top: 17%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 15px;
+        width: 14px;
+        height: 1px;
+        color: $pagination-grey;
+    }
+}
+.filter__price-input {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    width: 84px;
+    border: 1px solid $normal-grey;
+    border-radius: 2px; 
+    color: #000;
+    opacity: 0.6;
+    text-align: center;
+    font-size: 14px;
+    line-height: 10px;
+    padding: 5px 19px;
+    font-family: "Droid Sans";
 }
 .filter__input-container {
     margin-right: 40px;
@@ -28,9 +67,19 @@
         margin-bottom: 0;
     }
 }
+
+.filter__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    margin-top: 26px;
+}
 .filter__label-checkbox {
     display: block;
     padding-left: 40px;
+    line-height: 19px;
+    position: relative;
 }
 
 .filter__input {
@@ -75,7 +124,8 @@
     height: 24px;
     border-radius: 4px;
     border: 1px solid $normal-grey;
-    margin-left: -40px;
+    margin-left: -42px;
+    top: -4px;
 }
 
 .filter__button-show {
@@ -84,4 +134,7 @@
     text-transform: uppercase;
     padding: 8px 28px;
     width: 120px;
+    margin-top: 13px;
+    font-size: 12px;
+    line-height: 14px;
 }

@@ -17,7 +17,7 @@ export const ActionCreator = {
         payload: guitar,
         payloadTwo: id,
     }),
-    setFinalCost: (price) => ({
+    setFinalCostWithDiscount: (price) => ({
         type: ActionType.SET_FINAL_COST,
         payload: price,
     }),

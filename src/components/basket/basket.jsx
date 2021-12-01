@@ -15,7 +15,7 @@ import PageNavigation from '../page-navigation/page-navigation';
 import ModalBasket from '../modals/modalBasket';
 
 const Basket = (props) => {
-    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost} = props;
+    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost, finalCostDiscount} = props;
 
     const [coupon, setCoupon] = useState(`Ваш купон`)
     console.log(`coupon`, coupon)
@@ -44,7 +44,28 @@ const Basket = (props) => {
         }
         setCoupon(evt.target.value)
     }
-   
+    const getFinalCost = () => {
+        // [1,3,1]
+        let finalPrice = idItemsInBasketList.reduce((totalPricePrevious, guitarIdCurrent) => {
+            // totoalPricePrev = 0, guitarIdCurrent= 1, 
+            //totoalPricePrev = 10, guitarIdCurrent= 3, 
+            //totoalPricePrev = 40, guitarIdCurrent= 1, 
+            let actualPrice = guitars.filter((guitar) => guitar.id === guitarIdCurrent)[0].price;
+
+            //[guitar.id == 1][0].price 
+            //[guitar.id == 3][0].price 
+               //[guitar.id == 1][0].price 
+            return totalPricePrevious + actualPrice;
+            // 0 +10 = 10
+            //10+ 30 = 40
+            //40+ 10 = 50
+
+        },0)
+        // filteredGuitars = 50
+        console.log(`finalPrice`, finalPrice)
+        return finalPrice
+    }
+
     const handleOnAddCouponButtonClick = (evt) => {
         evt.preventDefault();
         let finalPriceWithDiscount;
@@ -164,7 +185,7 @@ const Basket = (props) => {
                         onClick={handleOnAddCouponButtonClick}
                     >Применить купон</button>
                 </div>
-                <p>Всего: {finalCost} ₽ </p>
+                <p>Всего: {finalCostDiscount} ₽ </p>
                 <button className="button button--orange" type="submit">Оформить заказ</button>
             </div>
             {isModalDeleteOpen ? <ModalBasket isDeleteFromBasket={true} isModalOpen={isModalDeleteOpen} guitarCard={guitars[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
@@ -179,6 +200,7 @@ const mapStateToProps = (state) => ({
     idItemsInBasketList: state.idItemsInBasketList,
     currentBasketList: state.itemsInBasket,
     finalCost: state.finalCost,
+    finalCostDiscount: state.finalCostDiscount,
 
 });
 
@@ -190,7 +212,7 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(ActionCreator.decreaseGuitarQuantity(guitarItem, id));
     },
     onFinalCostChange(price) {
-        dispatch(ActionCreator.setFinalCost(price));
+        dispatch(ActionCreator.setFinalCostWithDiscount(price));
     },
 
   

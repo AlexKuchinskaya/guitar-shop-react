@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 @import '../../styles/global.scss';
 @import '../../styles/container-site.scss';
-@import '../../styles/list.scss';
+// @import '../../styles/list.scss';
 
 .basket__title {
     margin-bottom: 20px;
@@ -103,4 +103,8 @@
 .coupon__wrong {
     color: red;
     display: block;
+}
+
+.coupon__button {
+
 }

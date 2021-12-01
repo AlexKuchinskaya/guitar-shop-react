@@ -1,18 +1,39 @@
 @import '../../styles/variables.scss';
-// @import '../../styles/global.scss';
 @import '../../styles/button.scss';
-// @import '../../styles/list.scss';
 
+.catalog__flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.catalog__items-container {
+    @media screen and (min-width: $desktop-width) {
+       width: 700px;
+    }  
+}
 .catalog__card {
     border: 1px solid $light-grey;
     padding: 16px 14px 20px;
+    box-sizing: border-box;
+}
+.catalog__title {
+    font-size: 23px;
+    line-height: 26px;
+    line-height: 0.2px;
 }
 
+.catalog__wrapper {
+    margin-top: 27px;
+}
 .catalog__list {
     display: grid;
     grid-template-columns: 220px 220px 220px;
     grid-column-gap: 19px;
     row-gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
     
 }
 .catalog__card-container {
@@ -22,9 +43,10 @@
         width: 84px;
         align-items: center;
     }
-    &--rating--info {
-        margin-top: 8px;
+    &--rating-info {
+        // margin-top: 8px;
         margin-bottom: 16px;
+        letter-spacing: .5px;
     }
 }
 
@@ -44,10 +66,11 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: bold;
-    width: 89px;
+    width: 87px;
     text-align: center;
     padding: 4px 0;
     border-radius: 2px;
+    letter-spacing: 0.4px;
 }
 
 .catalog__more-info {
@@ -81,7 +104,6 @@
 .catalog__image {
     width: 68px;
     margin: 0 auto;
-    margin-bottom: 8px;
 }
 .catalog__guitar-image {
     width: 68px;
@@ -96,18 +118,47 @@
     flex-wrap: wrap;
     align-items: center;
 }
+
+.sort__title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 1.4px;
+}
 .sort__container {
     display: flex;
     flex-wrap: wrap;
+    &--text {
+        width: 250px;
+        margin-left: 19px;
+        margin-right: auto;  
+    }
+    
 }
 
 .sort__button {
     margin-right: 34px;
+    color: $basic-black;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: 1.4px;
     &--up {
-        margin-right: 14px;
+        margin-right: 11px;
     }
     &:last-child {
         margin-right: 0;
+    }
+    &--up, &--down {
+        width: 30px;
+        height: 22px;
+        position: relative;
+        svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
 

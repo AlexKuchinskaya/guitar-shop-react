@@ -46,7 +46,7 @@ export const pageNavigationLinks = [
     },
 ]
 
-export const guitarTypesCheckbox = [`акустическая гитара`, `электрогитара`, `укулеле`]
+export const guitarTypesCheckbox = [`Акустические гитары`, `Электрогитары`, `Укулеле`]
 export const guitarNumberOfStrings = [4, 6, 7, 12]
 export const allNavSiteLinks = [
     {
