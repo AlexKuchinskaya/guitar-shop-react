@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import Header from '../header/header';
@@ -8,76 +8,47 @@ import {ReactComponent as CloseIcon} from '../../img/icon-cross.svg';
 import {ReactComponent as MinusIcon} from '../../img/minus-icon.svg';
 import {ReactComponent as PlusIcon} from '../../img/plus-icon.svg';
 import './basket.scss';
-import {calculate3000PercentageFromFinalPrice, calculatePriceWithTenPercentDiscount, returnGuitarPictureSmall} from '../utils/utils';
+import {calculate3000PercentageFromFinalPrice, calculatePriceWithTenPercentDiscount, formatPriceWithSpaces, returnGuitarPictureSmall} from '../utils/utils';
 import { GuitarListPropType, ItemsInBasketPropType } from '../../types/types';
-import { DISCOUNT_700, DISCOUNT_3000 } from '../const/const';
+import { DISCOUNT_700, DISCOUNT_3000, GITARAHIT, SUPERGITARA, GITARA2020 } from '../const/const';
 import PageNavigation from '../page-navigation/page-navigation';
 import ModalBasket from '../modals/modalBasket';
 
 const Basket = (props) => {
-    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDeleteFromBasketButtonClick, onFinalCostChange, finalCost, finalCostDiscount} = props;
-
-    const [coupon, setCoupon] = useState(`Ваш купон`)
-    console.log(`coupon`, coupon)
+    const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDecreaseQuantityButtonClick, onFinalCostChange, finalCost, finalCostDiscount, onDeleteButtonClick} = props;
+    const [coupon, setCoupon] = useState(``)
     const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false)
     const [isCouponWrong, setIsCouponWrong] = useState(false);
 
-    //move to global state 
     const onIsModalOpenChange = (isModalOpenCallback) => {
         setIsModalDeleteOpen(isModalOpenCallback)
       }
       const [modalIndex, setModalIndex] = useState(null)
 
-    console.log(`idItemsInBasketList`, idItemsInBasketList)
     const handleOnButtonPlusClick = (evt, guitarId) => {
         evt.preventDefault()
         onAddtoBasketButtonClick(currentBasketList + 1, guitarId)
     }
-    const handleOnButtonMinusClick = (evt, guitarId) => {
-        console.log(`guitarId`, guitarId)
-        evt.preventDefault()
-        onDeleteFromBasketButtonClick(currentBasketList - 1, guitarId)
-    }
+
     const handleOnCouponInputChange = (evt) => {
         if (isCouponWrong === true) {
             setIsCouponWrong(false)
         }
         setCoupon(evt.target.value)
     }
-    const getFinalCost = () => {
-        // [1,3,1]
-        let finalPrice = idItemsInBasketList.reduce((totalPricePrevious, guitarIdCurrent) => {
-            // totoalPricePrev = 0, guitarIdCurrent= 1, 
-            //totoalPricePrev = 10, guitarIdCurrent= 3, 
-            //totoalPricePrev = 40, guitarIdCurrent= 1, 
-            let actualPrice = guitars.filter((guitar) => guitar.id === guitarIdCurrent)[0].price;
 
-            //[guitar.id == 1][0].price 
-            //[guitar.id == 3][0].price 
-               //[guitar.id == 1][0].price 
-            return totalPricePrevious + actualPrice;
-            // 0 +10 = 10
-            //10+ 30 = 40
-            //40+ 10 = 50
-
-        },0)
-        // filteredGuitars = 50
-        console.log(`finalPrice`, finalPrice)
-        return finalPrice
-    }
 
     const handleOnAddCouponButtonClick = (evt) => {
         evt.preventDefault();
         let finalPriceWithDiscount;
         let percentage3000fromFinalPrice = calculate3000PercentageFromFinalPrice(finalCost)
-        console.log(`percentage3000fromFinalPrice`, percentage3000fromFinalPrice);
-        if (coupon === `GITARAHIT`) {
+        if (coupon === GITARAHIT) {
             finalPriceWithDiscount = calculatePriceWithTenPercentDiscount(finalCost);
             onFinalCostChange(finalPriceWithDiscount);
-        } else if (coupon === `SUPERGITARA`) {
+        } else if (coupon === SUPERGITARA) {
             finalPriceWithDiscount = finalCost - DISCOUNT_700; 
             onFinalCostChange(finalPriceWithDiscount);
-        } else if (coupon === `GITARA2020` && percentage3000fromFinalPrice < 30) {
+        } else if (coupon === GITARA2020 && percentage3000fromFinalPrice < 30) {
             finalPriceWithDiscount = finalCost - DISCOUNT_3000; 
             onFinalCostChange(finalPriceWithDiscount);
         } else {
@@ -93,7 +64,7 @@ const Basket = (props) => {
     //   }, [isModalDeleteOpen]);
     return <>
      <Header isMainPage={false}/>
-     <main className="main">
+     <main className="main main--basket">
         <h1 className="visually-hidden">Your Guitar Shop Basket</h1>
         <section className="basket container-site">
             <h2 className="title basket__title">Корзина</h2>
@@ -107,12 +78,14 @@ const Basket = (props) => {
                                     className="button guitar__button-delete"
                                     onClick={() => {
                                         setIsModalDeleteOpen(true)
+                                        onDeleteButtonClick(guitarElement.id);
                                         setModalIndex(index)
+                                        
                                     }}
                                 >
                                     <CloseIcon />
                                 </button>
-                                <div className="guitars__container">
+                                <div className="guitars__container guitars__container--image">
                                     <img src={returnGuitarPictureSmall(guitarElement.type)} className="guitars__image" alt={guitarElement.name} height="128" width="56" />
                                 </div>
                                 <div className="guitars__container guitars__container--info">
@@ -122,15 +95,15 @@ const Basket = (props) => {
                                         <p className="guitars__info">{guitarElement.type}, {guitarElement.stringNumber} струнная </p>
                                     </div>
                                 </div>
-                                <div className="guitars__container">
-                                    <p className="guitars__price">{guitarElement.price} ₽</p>
+                                <div className="guitars__container guitars__container--price">
+                                    <p className="guitars__price">{formatPriceWithSpaces(guitarElement.price)} ₽</p>
                                 </div>
                                 <div className="guitars__container guitars__container--input">
                                     <button type="button" className="button guitar__button guitar__button--minus" 
                                         onClick={(evt) => {
                                             evt.preventDefault()
                                             if (idItemsInBasketList.filter(item => item === guitarElement.id).length > 1) {
-                                                onDeleteFromBasketButtonClick(currentBasketList - 1, guitarElement.id)
+                                                onDecreaseQuantityButtonClick(currentBasketList - 1, guitarElement.id)
                                             } else {
                                                 setIsModalDeleteOpen(true)
                                                 setModalIndex(index)
@@ -146,8 +119,9 @@ const Basket = (props) => {
                                     className="guitars__input"
                                     id="quantity"
                                     value={idItemsInBasketList.filter(item => item === guitarElement.id).length}
-                                    // onChange={handleOnChangeQuantity} 
-                                    // onBlur={handleInputQuantityOnBlur}
+                                    onChange={()=>{}}
+                                    disabled={true}
+                        
                                     />
                                     <button type="button" className="button guitar__button guitar__button--plus" 
                                     onClick={(evt) => handleOnButtonPlusClick(evt, guitarElement.id)}
@@ -155,38 +129,46 @@ const Basket = (props) => {
                                         <PlusIcon />
                                     </button>
                                 </div>
-                                <div className="guitars__container">
-                                    <p className="guitars__price guitars__price--quantity">{guitarElement.price} ₽</p>
+                                <div className="guitars__container guitars__container--price">
+                                    <p className="guitars__price guitars__price--quantity">{formatPriceWithSpaces(guitarElement.price * idItemsInBasketList.filter(item => item === guitarElement.id).length)} ₽</p>
                                 </div>
                             </li>
                         }
                         return ``
                     })}
                 </ul>
+                <div className="basket__calculations">
                 <div className="coupon">
                     <h3 className="coupon__title">Промокод на скидку</h3>
-                    <label className="coupon__label" htmlFor="coupon">Введите свой промокод, если он у вас есть.
+                    <label className="coupon__label" htmlFor="coupon">Введите свой промокод, если он у вас есть.</label>
                     {isCouponWrong ? 
                      <span className="coupon__wrong">Промокод не действителен<sup>*</sup></span> 
                      :
                      null
                     }
+                    <div className="coupon__container">
                     <input
                         type="text"
                         id="coupon"
                         className={`coupon__input ${isCouponWrong ? `coupon__input--error` : ``}`}
+                        placeholder={`ВАШ КУПОН`}
                         value={coupon}
                         onChange={handleOnCouponInputChange}
                     />
-                     </label>
+                     
                     <button 
                         type="button"
                         className="button button--grey coupon__button"
                         onClick={handleOnAddCouponButtonClick}
                     >Применить купон</button>
+                    </div>
+                
                 </div>
-                <p>Всего: {finalCostDiscount} ₽ </p>
-                <button className="button button--orange" type="submit">Оформить заказ</button>
+                <div className="basket__total">
+                <p className="basket__final-price">Всего: {finalCostDiscount} ₽ </p>
+                <button className="button button--orange basket__submit" type="submit">Оформить заказ</button>
+                </div>
+            </div>
             </div>
             {isModalDeleteOpen ? <ModalBasket isDeleteFromBasket={true} isModalOpen={isModalDeleteOpen} guitarCard={guitars[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
         </section>
@@ -208,11 +190,14 @@ const mapDispatchToProps = (dispatch) => ({
     onAddtoBasketButtonClick(guitarItem, id) {
       dispatch(ActionCreator.addToBasket(guitarItem, id));
     },
-    onDeleteFromBasketButtonClick(guitarItem, id) {
+    onDecreaseQuantityButtonClick(guitarItem, id) {
         dispatch(ActionCreator.decreaseGuitarQuantity(guitarItem, id));
     },
     onFinalCostChange(price) {
         dispatch(ActionCreator.setFinalCostWithDiscount(price));
+    },
+    onDeleteButtonClick(id) {
+        dispatch(ActionCreator.deleteFromBasket(id));
     },
 
   
@@ -223,7 +208,8 @@ Basket.propTypes = {
     idItemsInBasketList: PropTypes.arrayOf(PropTypes.number),
     currentBasketList: ItemsInBasketPropType,
     onAddtoBasketButtonClick: PropTypes.func.isRequired,
-    onDeleteFromBasketButtonClick: PropTypes.func.isRequired,
+    onDecreaseQuantityButtonClick: PropTypes.func.isRequired,
+    onDeleteButtonClick: PropTypes.func.isRequired,
     onFinalCostChange: PropTypes.func.isRequired,
     finalCost: PropTypes.number.isRequired,
 }

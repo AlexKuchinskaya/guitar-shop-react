@@ -5,14 +5,11 @@ import {returnFalseForCallBackFunction, returnGuitarPictureSmall} from '../utils
 import './modal.scss';
 
 const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, idItemsInBasketList, onContinueBuyButtonClick, onDeleteFromBasketClick }) => {
-    console.log(`idItemsInBasketListBefore`, idItemsInBasketList)
     const handleAddToBasket = () => {
-        console.log(`guitarCard.id`, guitarCard.id)
         onAddToBasketClick(returnFalseForCallBackFunction)
         onAddtoBasketButtonClick(currentbasketState + 1, guitarCard.id)
         
     }
-    console.log(`idItemsInBasketList`, idItemsInBasketList)
     const handleDeleteFromBasket = (evt, guitarId) => {
         evt.preventDefault();
         onDeleteFromBasketClick(guitarId)
@@ -23,22 +20,24 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
     }
   return <>
             <h3 className="title modal__title">{isDeleteFromBasket? `Удалить этот товар?` : `Добавить товар в корзину`}</h3>
+            <div className="modal__flex">
             <div className="modal__container">
                 <div className="modal__image">
                     <img src={returnGuitarPictureSmall(guitarCard.type)} className="modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
                 </div>
-                <div>
-                    <h4 className="title modal__guitar-title">{guitarCard.name}</h4>
-                    <div>
-                        <p className="">Артикул: {guitarCard.item}</p>
-                        <p>{guitarCard.type}, {guitarCard.stringNumber} струнная </p>
+                <div className="modal__text">
+                    <h4 className="title modal__guitar-title">Гитара {guitarCard.name}</h4>
+                    <div className="modal__guitar">
+                        <p className="modal__item">Артикул: {guitarCard.item}</p>
+                        <p className="modal__item">{guitarCard.type}, {guitarCard.stringNumber} струнная </p>
                     </div>
                     <p className="modal__price">Цена: {guitarCard.price} ₽</p>
                 </div>
             </div>
+            <div className="modal__buttons-wrapper">
             {isDeleteFromBasket 
             ?
-            <div className="modal__buttons-wrapper">
+                <>
                 <button
                 className="button button--orange modal__button"
                 onClick={(evt) => handleDeleteFromBasket(evt, guitarCard.id)}
@@ -50,7 +49,7 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
                     className="button button--transparent modal__button modal__button--continue"
                     onClick={handleOnContinueBuyClick}
                 >Продолжить покупки</button>
-            </div>
+            </>
             : 
             <button
             className="button button--orange modal__button"
@@ -59,7 +58,9 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
             Добавить в корзину
             </button>
             }
-
+             </div>
+            </div>
+            
   </>
 };
 

@@ -28,8 +28,8 @@ const CatalogSort = ({onSortTypeChange}) => {
         <div className="catalog__sort sort">
             <h3 className="title sort__title">Сортировать:</h3>
             <div className="sort__container sort__container--text">
-                <button className="button sort__button sort__button--price" type="button" onClick={handleSortByPriceFromLowestToHighest}>по цене</button>
-                <button className="button sort__button sort__button--reviews" type="button" onClick={handleSortByReviewsFromLowestToHighest}>по популярности</button>
+                <button className={`button sort__button ${isPrice ? `` : `sort__button--grey`} sort__button--price`} type="button" onClick={handleSortByPriceFromLowestToHighest}>по цене</button>
+                <button className={`button sort__button ${isPrice ? `sort__button--grey` : ``} sort__button--reviews`} type="button" onClick={handleSortByReviewsFromLowestToHighest}>по популярности</button>
             </div> 
             <div className="sort__container sort__container--pictures">
                 <button 

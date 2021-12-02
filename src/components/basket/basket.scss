@@ -3,10 +3,18 @@
 @import '../../styles/container-site.scss';
 // @import '../../styles/list.scss';
 
-.basket__title {
-    margin-bottom: 20px;
+.basket {
+    .navigation-site {
+        margin-top: 21px;
+        margin-bottom: 31px;
+    }
 }
 
+.basket__calculations {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
 .guitars__guitar-title {
     text-transform: uppercase;
     font-size: 16px;
@@ -16,21 +24,45 @@
 
 .guitars__list {
     border-top: 1px solid $light-grey;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
 }
 .guitars__item {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 20px 0;
+    padding-top: 19px;
+    padding-bottom: 11px;
     border-bottom: 1px solid $light-grey;
     position: relative;
 }
 
 .guitars__container {
+    margin-right: 70px;
     &--input {
         display: flex;
         height: 30px;
+        padding-top: 21px;
     }
+    &--image {
+        padding-left: 38px;
+        margin-right: 35px;
+    }
+    &--price {
+        padding-top: 57px;
+    }
+    &--info {
+        width: 280px;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+}
+.guitars__image {
+    height: 128px;
+    width: 56px;
 }
 .guitars__number, .guitars__info {
     margin: 0;
@@ -40,8 +72,16 @@
     &:last-child {
         margin-bottom: 0;
     }
+    &--info {
+        min-width: 260px;
+    }
 }
-
+.guitars__price {
+    margin: 0; 
+    font-size: 20px;
+    line-height: 15px;
+    letter-spacing: 1.5px;
+}
 .guitars__input {
     display: block;
     width: 28px;
@@ -90,13 +130,40 @@
     }
 }
 
+.coupon__title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 15px;
+    letter-spacing: 1.5px;
+}
 .coupon__label {
     display: block;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 1px;
+    margin-top: 8px;
 }
+.coupon__container {
+    margin-top: 17px;
+    display: flex;
 
+}
 .coupon__input {
+    display: block;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    padding: 11px 0px;
+    width: 170px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-right: 33px;
+    border: 1px solid $light-grey;
     &--error {
         border-color: red;
+    }
+    &::placeholder {
+        color: $basic-black;
     }
 }
 
@@ -106,5 +173,22 @@
 }
 
 .coupon__button {
+    width: 200px;
+}
 
+.basket__final-price {
+    margin: 0;
+    font-size: 20px;
+    line-height: 15px;
+    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-align: right;
+}
+
+.basket__submit {
+    margin-top: 44px;
+    width: 220px;
+    letter-spacing: 1.5px;
+    padding: 10px 0;
 }

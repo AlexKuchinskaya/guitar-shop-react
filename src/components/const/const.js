@@ -3,6 +3,9 @@ export const DISCOUNT_700 = 700;
 export const DISCOUNT_10 = 10;
 export const DISCOUNT_3000 = 3000;
 export const STARS_RATING = [1, 2, 3, 4, 5];
+export const GITARAHIT = `GITARAHIT`;
+export const SUPERGITARA = `SUPERGITARA`;
+export const GITARA2020 = `GITARA2020`;
 
 export const ExtraLinks = {
   MAP: 1,

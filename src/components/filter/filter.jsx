@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from "prop-types";
-import { GuitarTypes, guitarTypesCheckbox, guitarNumberOfStrings } from '../const/const';
+import {GuitarTypes, guitarTypesCheckbox, guitarNumberOfStrings} from '../const/const';
 import './filter.scss';
 
 const Filter = ({onFilterShowButtonClick}) => {
@@ -18,7 +18,6 @@ const Filter = ({onFilterShowButtonClick}) => {
     );
 
     const addAcousticFilterToState = (filters) => {
-        console.log("ACUSTIC FILTER")
         const acousticFilter = [true, false,false,false];
         const returnFilter = acousticFilter.map((value,index)=>{
             return value && filters[index];
@@ -142,7 +141,6 @@ const Filter = ({onFilterShowButtonClick}) => {
             const guitarTypesFiltered = dataGuitars.filter((guitarElement) => 
                 checkedGuitarsType.includes(guitarElement.type)
             )
-            console.log(`guitarTypesFiltered`, guitarTypesFiltered)
 
             return guitarTypesFiltered;
         }
@@ -180,7 +178,6 @@ const Filter = ({onFilterShowButtonClick}) => {
             const guitarStringFiltered = dataGuitars.filter((guitarElement) => 
                 checkedGuitarsString.includes(guitarElement.stringNumber)
             )
-            console.log(`guitarStringFiltered`, guitarStringFiltered)
             return guitarStringFiltered;
         } 
         return dataGuitars;
@@ -197,7 +194,7 @@ const Filter = ({onFilterShowButtonClick}) => {
 
     useEffect(() => {
         handleCheckDisabiltyGuitarStrings();
-    }, [checkedTypeGuitarState]);
+    }, /* eslint-disable */[checkedTypeGuitarState]); /* eslint-disable */
 
     return (
       <div className="filter">
@@ -205,7 +202,9 @@ const Filter = ({onFilterShowButtonClick}) => {
             <h3 className="title filter__title">Фильтр</h3>
             <div className="filter__container">
                 <div className="filter-wrapper filter-wrapper filter-wrapper--price">
-                    <h4 className="title filter__subtitle">Цена, ₽</h4>
+                    <h4 className="title filter__subtitle">Цена,
+                        <span className="filter__title-currency">₽</span>
+                    </h4>
                     <div className="filter filter__price-container">
                         <div className="filter__input-container">
                             <label id="priceFrom" className="filter__label-price"></label>

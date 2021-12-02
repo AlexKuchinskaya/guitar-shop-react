@@ -1,11 +1,9 @@
 @import '../../styles/variables.scss';
-// @import '../../styles/list.scss';
-// @import '../../styles/button.scss';
 
 .pagination__list {
     box-sizing: border-box;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     margin: 0;
     padding: 0;

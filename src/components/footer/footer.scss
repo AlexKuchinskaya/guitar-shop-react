@@ -10,7 +10,7 @@
     position: relative;
     background-color: $dark-grey;
     @media screen and (min-width: $tablet-width) {
-        padding-top: 61px;
+        padding-top: 58px;
         padding-bottom: 51px;
     } 
     @media screen and (min-width: $desktop-width) {
@@ -25,24 +25,43 @@
 .footer__wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
 }
 .footer__section {
     color: $basic-white;
     width: 140px;
+    &--social {
+        margin-right: 98px;
+    }
+    &--about {
+        width: 145px;
+    }
 }
 .footer__container {
     display: flex;
     flex-wrap: wrap;
+    padding-top: 5px;
+    .footer__section {
+        margin-right: 16px;
+        &:last-child {
+            margin-right: 0;
+        }
+        &--catalog {
+            margin-right: 22px;
+        }
+    }
 }
 .footer__section-container {
     display: flex;
     flex-wrap: wrap;
-    margin-right: 93px;
+    margin-right: 98px;
 }
 .footer__title {
-    letter-spacing: 0.5px;
-    margin-bottom: 13px;
+    letter-spacing: 1.7px;
+    font-size: 14px;
+    line-height: 44px;
+    font-weight: 400;
+    margin-bottom: 1px;
 }
 .footer__social {
     width: 104px;
@@ -51,7 +70,7 @@
     } 
     @media screen and (min-width: $desktop-width) {
         width: 118px;
-        margin-top: 55px;
+        margin-top: 48px;
     } 
 }
 .info-footer__list, .catalog-footer__list {
@@ -64,7 +83,8 @@
     margin: 0;
     font-size: 10px;
     line-height: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
     &:last-child {
         margin-bottom: 0;
     }
@@ -85,19 +105,23 @@
 .contacts-footer {
     font-size: 10px;
     line-height: 12px;
+    width: 129px;
     p {
         margin: 0;
     }
 }
 
 .contacts-footer__wrapper {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
     &:last-child {
         margin-bottom: 0;
     }
 }
 .contacts-footer__title {
     margin: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 13px;
 }
 .contacts-footer__link, .contacts-footer__time {
     position: relative;
@@ -124,10 +148,18 @@
 }
 
 .contacts-footer__time {
+    padding-left: 0;
+    text-indent: 15px;
     &::before {
         background-image: url(../../img/icon-clock.svg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: auto 100%;
+        top: 0;
+        transform: translateY(0);
     }
+}
+
+.catalog-footer__link, .info-footer__link, .contacts-footer__wrapper {
+    letter-spacing: 1.4px;
 }

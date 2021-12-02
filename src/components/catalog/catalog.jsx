@@ -8,52 +8,25 @@ import CatalogStarRating from './catalog-star-rating';
 import CatalogSort from './catalog-sort';
 import Filter from '../filter/filter';
 import ModalBasket from '../modals/modalBasket';
-// import Pagination from '../pagination/pagination';
 import ReactPaginate from 'react-paginate';
 import { GuitarListPropType } from '../../types/types';
 import PageNavigation from '../page-navigation/page-navigation';
 
 
 const Catalog = ({guitars}) => {
-  // const bodyElement = document.querySelector(`.body-page`)
-  // const [currentPage, setCurrentPage] = useState(1)
   const guitarPerPage = 9;
-  // const lastGuitarIndex = currentPage * guitarPerPage;
-  // const firstGuitarIndex = lastGuitarIndex - guitarPerPage;
   const [mocksData, setMocksData] = useState(guitars)
-  console.log(`mocksData`, mocksData)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalIndex, setModalIndex] = useState(null)
-  // const currentGuitarListPerPage = mocksData.slice(firstGuitarIndex, lastGuitarIndex)
-
-
-
-  // React Paginate
-
-  // const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
+
   const onFilterShowButtonClick = (onFilterShowButtonClickCallback) => {
     setMocksData(onFilterShowButtonClickCallback([...guitars]))
   }
-  useEffect(() => {
-    // Fetch items from another resources.
-    const endOffset = itemOffset + guitarPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setMocksData(guitars.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(guitars.length / guitarPerPage));
-  }, [itemOffset, guitarPerPage, guitars]);
-
-  // Invoke when user click to request another page.
+  
   const handlePageClick = (event) => {
-    console.log(`pageCount`, pageCount)
-
     const newOffset = (event.selected * guitarPerPage) % guitars.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     setItemOffset(newOffset);
   };
 
@@ -67,9 +40,6 @@ const Catalog = ({guitars}) => {
     }
     setMocksData([...mocksData].sort(sortCallback));
   }
-
-  // const onPageNumberClick = (pageNumber) => setCurrentPage(pageNumber);
-
 
   const returnGuitarPicture = (guitarType) => {
     switch (guitarType) {
@@ -87,8 +57,6 @@ const Catalog = ({guitars}) => {
   const handleButtonBuyOnClick = (index) => {
     setIsModalOpen(true);
     setModalIndex(index);
-    // console.log(`bodyElement`, bodyElement)
-    // bodyElement.classListAdd(`body-page--hidden`)
   }
   // useEffect(() => {
   //   if (isModalOpen) {
@@ -97,6 +65,12 @@ const Catalog = ({guitars}) => {
   //     document.body.style.overflow = 'unset';
   //   }
   // }, [isModalOpen]);
+  useEffect(() => {
+    const endOffset = itemOffset + guitarPerPage;
+    setMocksData(guitars.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(guitars.length / guitarPerPage));
+  }, [itemOffset, guitarPerPage, guitars]);
+
   return (
     <section className="catalog container-site">
             <h2 className="title catalog__title">Каталог гитар</h2>

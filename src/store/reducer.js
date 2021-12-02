@@ -12,36 +12,17 @@ const initialState = {
 }
 
 const getFinalCost = (idItemsInBasket, guitars) => {
-  // [1,3,1]
   let finalPrice = idItemsInBasket.reduce((totalPricePrevious, guitarIdCurrent) => {
-      // totoalPricePrev = 0, guitarIdCurrent= 1, 
-      //totoalPricePrev = 10, guitarIdCurrent= 3, 
-      //totoalPricePrev = 40, guitarIdCurrent= 1, 
       let actualPrice = guitars.filter((guitar) => guitar.id === guitarIdCurrent)[0].price;
-
-      //[guitar.id == 1][0].price 
-      //[guitar.id == 3][0].price 
-         //[guitar.id == 1][0].price 
       return totalPricePrevious + actualPrice;
-      // 0 +10 = 10
-      //10+ 30 = 40
-      //40+ 10 = 50
 
   },0)
-  // filteredGuitars = 50
-  console.log(`finalPrice`, finalPrice)
   return finalPrice
 }
 const getFinalGuitarCost = (guitarId, guitars) => {
-
-    return guitars.filter((guitar) => guitar.id === guitarId)[0].price;
-
-      // 0 +10 = 10
-      //10+ 30 = 40
-      //40+ 10 = 50
-
-
+  return guitars.filter((guitar) => guitar.id === guitarId)[0].price;
 }
+
 const checkArrayForElement = (elementList, elementToCompare) => {
     let index = elementList.indexOf(elementToCompare);
     if (index > -1) {
@@ -80,7 +61,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           itemsInBasket: state.idItemsInBasketList.filter((idItem) => idItem !== action.payload).length,
           idItemsInBasketList: state.idItemsInBasketList.filter((idItem) => idItem !== action.payload),
-          finalCost: getFinalCost(state.idItemsInBasketList, state.guitarList)
+          finalCost: state.finalCost - (getFinalGuitarCost(action.payload, state.guitarList) * state.guitarList.filter((guitar) => guitar.id === action.payload).length),
 
         };
       default:
