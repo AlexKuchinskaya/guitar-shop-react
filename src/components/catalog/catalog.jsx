@@ -58,13 +58,14 @@ const Catalog = ({guitars}) => {
     setIsModalOpen(true);
     setModalIndex(index);
   };
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     document.body.style.overflow = 'hidden';
-  //   } else {
-  //     document.body.style.overflow = 'unset';
-  //   }
-  // }, [isModalOpen]);
+  useEffect(() => {
+    document.body.style.overflow = `unset`;
+    if (isModalOpen) {
+      document.body.style.overflow = `hidden`;
+    } else {
+      document.body.style.overflow = `unset`;
+    }
+  }, [isModalOpen]);
   useEffect(() => {
     const endOffset = itemOffset + guitarPerPage;
     setMocksData(guitars.slice(itemOffset, endOffset));

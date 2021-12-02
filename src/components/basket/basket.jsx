@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import Header from '../header/header';
@@ -55,13 +55,14 @@ const Basket = (props) => {
       setIsCouponWrong(true);
     }
   };
-  // useEffect(() => {
-  //     if (isModalDeleteOpen) {
-  //       document.body.style.overflow = 'hidden';
-  //     } else {
-  //       document.body.style.overflow = 'unset';
-  //     }
-  //   }, [isModalDeleteOpen]);
+  useEffect(() => {
+    document.body.style.overflow = `unset`;
+    if (isModalDeleteOpen) {
+      document.body.style.overflow = `hidden`;
+    } else {
+      document.body.style.overflow = `unset`;
+    }
+  }, [isModalDeleteOpen]);
   return <>
     <Header isMainPage={false}/>
     <main className="main main--basket">
