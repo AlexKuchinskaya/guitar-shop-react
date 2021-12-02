@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {ActionCreator} from '../../store/action';
 import {returnFalseForCallBackFunction, returnGuitarPictureSmall} from '../utils/utils';
 import './modal.scss';
-import {GuitarPropType} from '../../types/types';
+import {guitarPropType} from '../../types/types';
 
 const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddToBasketClick, onAddtoBasketButtonClick, onContinueBuyButtonClick, onDeleteFromBasketClick}) => {
   const handleAddToBasket = () => {
@@ -25,7 +25,7 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
     <div className="modal__flex">
       <div className="modal__container">
         <div className="modal__image">
-          <img src={returnGuitarPictureSmall(guitarCard.type)} className="modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
+          <img src={returnGuitarPictureSmall(guitarCard.type)} className="image modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
         </div>
         <div className="modal__text">
           <h4 className="title modal__guitar-title">Гитара {guitarCard.name}</h4>
@@ -82,7 +82,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 AddToBasket.propTypes = {
   currentbasketState: PropTypes.number.isRequired,
-  guitarCard: GuitarPropType,
+  guitarCard: guitarPropType,
   onContinueBuyButtonClick: PropTypes.func.isRequired,
   onAddtoBasketButtonClick: PropTypes.func.isRequired,
   onAddToBasketClick: PropTypes.func.isRequired,

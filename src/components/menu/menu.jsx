@@ -14,7 +14,7 @@ const Menu = () => {
         <ul className="list menu__list">
           {allNavSiteLinks.map((siteLink) => {
             return <li key={siteLink.linkName} className="menu__item">
-              <a href={`#${siteLink.href}`} onClick={(evt) => handleActiveLink(evt)} className={`menu__link  ${siteLink.href === activeLink ? `menu__link--active` : ``}`} data-link={siteLink.href}>
+              <a href={`#${siteLink.href}`} onClick={(evt) => handleActiveLink(evt)} className={`link-site menu__link  ${siteLink.href === activeLink ? `menu__link--active` : ``}`} data-link={siteLink.href}>
                 {siteLink.linkName}
               </a>
             </li>;

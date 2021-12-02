@@ -96,7 +96,7 @@ export const extraLinks = [
   },
 ];
 
-export const footerSocialInfo = [
+export const footerSocials = [
   {
     name: `Facebook`,
     id: 1,

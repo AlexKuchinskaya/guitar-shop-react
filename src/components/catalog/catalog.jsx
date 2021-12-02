@@ -9,7 +9,7 @@ import CatalogSort from './catalog-sort';
 import Filter from '../filter/filter';
 import ModalBasket from '../modals/modalBasket';
 import ReactPaginate from 'react-paginate';
-import {GuitarListPropType} from '../../types/types';
+import {guitarListPropType} from '../../types/types';
 import PageNavigation from '../page-navigation/page-navigation';
 
 
@@ -81,12 +81,12 @@ const Catalog = ({guitars}) => {
         <div className="catalog__items-container">
           <CatalogSort onSortTypeChange={onSortTypeChange} />
           <div className="catalog__wrapper">
-            <ul className="list catalog__list">
+            <div className="list catalog__list">
               {mocksData &&
                       mocksData.map((mockGuitar, index) => {
                         return <article key={mockGuitar.id} className="catalog__card">
                           <div className="catalog__image">
-                            <img src={returnGuitarPicture(mockGuitar.type)} className="catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />
+                            <img src={returnGuitarPicture(mockGuitar.type)} className="image catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />
                           </div>
                           <div className="catalog__card-container catalog__card-container--rating">
                             <CatalogStarRating />
@@ -97,7 +97,7 @@ const Catalog = ({guitars}) => {
                             <span className="catalog__guitar-price">{formatPriceWithSpaces(mockGuitar.price)} ₽</span>
                           </div>
                           <div className="catalog__card-container catalog__card-container--rating-buttons">
-                            <a href="#0" className="button button--grey catalog__more-info">Подробнее</a>
+                            <a href="#0" className="link-site button button--grey catalog__more-info">Подробнее</a>
                             <button
                               type="button"
                               className="button button--orange catalog__buy"
@@ -106,7 +106,7 @@ const Catalog = ({guitars}) => {
                           </div>
                         </article>;
                       })}
-            </ul>
+            </div>
             {isModalOpen && modalIndex !== null ? <ModalBasket isDeleteFromBasket={false} isModalOpen={isModalOpen} guitarCard={mocksData[modalIndex]} onIsModalOpenChange={onIsModalOpenChange}/> : ``}
             <ReactPaginate
               breakLabel="..."
@@ -128,7 +128,6 @@ const Catalog = ({guitars}) => {
               previousLinkClassName={`pagination__link pagination__link--back`}
               nextLinkClassName={`pagination__link pagination__link--next`}
             />
-            {/* <Pagination guitarPerPage={guitarPerPage} totalGuitars={mocksData.length} onPageNumberClick={onPageNumberClick}/> */}
           </div>
         </div>
       </div>
@@ -140,7 +139,7 @@ const mapStateToProps = (state) => ({
 });
 
 Catalog.propTypes = {
-  guitars: GuitarListPropType,
+  guitars: guitarListPropType,
 };
 
 export {Catalog};

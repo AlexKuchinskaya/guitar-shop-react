@@ -11,7 +11,7 @@ const PageNavigation = ({isBasket}) => {
       <ul className="list navigation-site__list">
         {checkedArrayWithBasketOrNot.map((navLink) => {
           return <li key={navLink.linkName} className="navigation-site__item">
-            <Link className={`navigation-site__link navigation-site__link--${navLink.class}`} to={navLink.route}>{navLink.linkName}</Link>
+            <Link className={`link-site navigation-site__link navigation-site__link--${navLink.class}`} to={navLink.route}>{navLink.linkName}</Link>
           </li>;
         }) }
       </ul>

@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-export const ItemsInBasketPropType = PropTypes.number.isRequired;
+export const itemsInBasketPropType = PropTypes.number.isRequired;
 
-export const IsMainPagePropType = PropTypes.bool.isRequired;
+export const isMainPagePropType = PropTypes.bool.isRequired;
 
-export const GuitarPropType = PropTypes.shape({
+export const guitarPropType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   item: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -14,4 +14,4 @@ export const GuitarPropType = PropTypes.shape({
   price: PropTypes.number.isRequired,
 });
 
-export const GuitarListPropType = PropTypes.arrayOf(GuitarPropType).isRequired;
+export const guitarListPropType = PropTypes.arrayOf(guitarPropType).isRequired;

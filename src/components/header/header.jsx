@@ -7,7 +7,7 @@ import Logo from '../logo/logo';
 import Menu from '../menu/menu';
 import {connect} from 'react-redux';
 import './header.scss';
-import {IsMainPagePropType, ItemsInBasketPropType} from '../../types/types';
+import {isMainPagePropType, itemsInBasketPropType} from '../../types/types';
 import {Link} from 'react-router-dom';
 
 const Header = ({basketItems, isMainPage}) => {
@@ -32,7 +32,7 @@ const Header = ({basketItems, isMainPage}) => {
           <ul className="list header__extra-list">
             {extraLinks.map((siteLink) => {
               return <li key={siteLink.id} className="header__extra-item">
-                <Link to={siteLink.id === 3 ? Routes.MY_BASKET : `#0`} className={`header__extra-link header__extra-link--${siteLink.linkName}`} aria-label={siteLink.linkName}>
+                <Link to={siteLink.id === 3 ? Routes.MY_BASKET : `#0`} className={`link-site header__extra-link header__extra-link--${siteLink.linkName}`} aria-label={siteLink.linkName}>
                   {returnSvg(siteLink.id)}
                   {siteLink.id === 3 ? <span className="header__extra-count">
                     <sup>{basketItems > 0 ? basketItems : null}</sup>
@@ -51,8 +51,8 @@ const mapStateToProps = (state) => ({
 });
 
 Header.propTypes = {
-  basketItems: ItemsInBasketPropType,
-  isMainPage: IsMainPagePropType,
+  basketItems: itemsInBasketPropType,
+  isMainPage: isMainPagePropType,
 };
 
 export {Header};

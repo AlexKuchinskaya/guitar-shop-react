@@ -5,7 +5,7 @@ import AddedToBasket from "./added-to-basket";
 import {ReactComponent as CloseFormIcon} from '../../img/icon-cross.svg';
 import {returnFalseForCallBackFunction} from '../utils/utils';
 import {ESC_KEY} from '../const/const';
-import {GuitarPropType} from '../../types/types';
+import {guitarPropType} from '../../types/types';
 import FocusTrap from 'focus-trap-react';
 
 const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpenChange}) => {
@@ -72,7 +72,7 @@ const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpen
 
 ModalBasket.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  guitarCard: GuitarPropType,
+  guitarCard: guitarPropType,
   onIsModalOpenChange: PropTypes.func.isRequired,
   isDeleteFromBasket: PropTypes.bool.isRequired,
 };

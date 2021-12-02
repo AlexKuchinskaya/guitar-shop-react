@@ -34,6 +34,7 @@ const CatalogSort = ({onSortTypeChange}) => {
       <div className="sort__container sort__container--pictures">
         <button
           className="button sort__button sort__button--up"
+          aria-label="Сортироать от низкого к высокому показателю"
           type="button"
           onClick={isPrice ? handleSortByPriceFromLowestToHighest : handleSortByReviewsFromLowestToHighest}
         >
@@ -41,6 +42,7 @@ const CatalogSort = ({onSortTypeChange}) => {
         </button>
         <button
           className="button sort__button sort__button--down"
+          aria-label="Сортироать от высокого к низкому показателю"
           type="button"
           onClick={isPrice ? handleSortByPriceFromHighestToLowest : handleSortByReviewsFromLowestToLowest}
         >

@@ -1,5 +1,4 @@
 @import '../../styles/variables.scss';
-// @import '../../styles/title.scss';
 
 .filter {
     width: 208px;
@@ -114,9 +113,6 @@
             background-size: auto 100%;
         }
     }
-    // &:focus + .filter__check-box {
-    //     border-color: blue;
-    // }
     &:disabled + .filter__check-box {
         background-color: $checkbox-disabled;
         border-color: $checkbox-border;

@@ -9,7 +9,7 @@ import {ReactComponent as MinusIcon} from '../../img/minus-icon.svg';
 import {ReactComponent as PlusIcon} from '../../img/plus-icon.svg';
 import './basket.scss';
 import {calculate3000PercentageFromFinalPrice, calculatePriceWithTenPercentDiscount, formatPriceWithSpaces, returnGuitarPictureSmall} from '../utils/utils';
-import {GuitarListPropType, ItemsInBasketPropType} from '../../types/types';
+import {guitarListPropType, itemsInBasketPropType} from '../../types/types';
 import {DISCOUNT_700, DISCOUNT_3000, GITARAHIT, SUPERGITARA, GITARA2020} from '../const/const';
 import PageNavigation from '../page-navigation/page-navigation';
 import ModalBasket from '../modals/modalBasket';
@@ -87,7 +87,7 @@ const Basket = (props) => {
                     <CloseIcon />
                   </button>
                   <div className="guitars__container guitars__container--image">
-                    <img src={returnGuitarPictureSmall(guitarElement.type)} className="guitars__image" alt={guitarElement.name} height="128" width="56" />
+                    <img src={returnGuitarPictureSmall(guitarElement.type)} className="image guitars__image" alt={guitarElement.name} height="128" width="56" />
                   </div>
                   <div className="guitars__container guitars__container--info">
                     <h4 className="title guitars__guitar-title">{guitarElement.type} {guitarElement.name}</h4>
@@ -205,9 +205,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Basket.propTypes = {
-  guitars: GuitarListPropType,
+  guitars: guitarListPropType,
   idItemsInBasketList: PropTypes.arrayOf(PropTypes.number),
-  currentBasketList: ItemsInBasketPropType,
+  currentBasketList: itemsInBasketPropType,
   onAddtoBasketButtonClick: PropTypes.func.isRequired,
   onDecreaseQuantityButtonClick: PropTypes.func.isRequired,
   onDeleteButtonClick: PropTypes.func.isRequired,

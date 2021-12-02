@@ -2,8 +2,6 @@
 @import '../../styles/global.scss';
 @import '../../styles/container-site.scss';
 @import '../../styles/title.scss';
-// @import '../../styles/list.scss';
-
 
 .footer {
     z-index: 20;
@@ -25,7 +23,6 @@
 .footer__wrapper {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
 }
 .footer__section {
     color: $basic-white;

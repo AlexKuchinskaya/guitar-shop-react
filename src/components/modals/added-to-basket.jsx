@@ -11,7 +11,7 @@ const AddedToBasket = ({onContinueBuyButtonClick}) => {
   return <>
     <h3 className="title modal__title">Товар успешно добавлен в корзину</h3>
     <div className="modal__flex modal__flex--added">
-      <Link to={Routes.MY_BASKET} className="button button--orange modal__button--basket">Перейти в корзину</Link>
+      <Link to={Routes.MY_BASKET} className="link-site button button--orange modal__button--basket">Перейти в корзину</Link>
       <button
         type="button"
         className="button button--transparent modal__button modal__button--continue"

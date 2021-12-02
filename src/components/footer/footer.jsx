@@ -1,5 +1,5 @@
 import React from 'react';
-import {IsMainPagePropType} from '../../types/types';
+import {isMainPagePropType} from '../../types/types';
 import {footerCatalogLinks, footerInfoLinks} from '../const/const';
 import Logo from '../logo/logo';
 import FooterSocial from './footer-social';
@@ -28,7 +28,7 @@ const Footer = ({isMainPage}) => {
                 <ul className="list catalog-footer__list">
                   {footerCatalogLinks.map((footerCatalog) => {
                     return <li key={footerCatalog.name} className="catalog-footer__item">
-                      <a href="!#" className="catalog-footer__link">
+                      <a href="#" className="link-site catalog-footer__link">
                         {footerCatalog.name}
                       </a>
                     </li>;
@@ -42,7 +42,7 @@ const Footer = ({isMainPage}) => {
                 <ul className="list info-footer__list">
                   {footerInfoLinks.map((footerInfo) => {
                     return <li key={footerInfo.name} className="info-footer__item">
-                      <a href="!#" className="info-footer__link">
+                      <a href="#" className="link-site info-footer__link">
                         {footerInfo.name}
                       </a>
                     </li>;
@@ -57,7 +57,7 @@ const Footer = ({isMainPage}) => {
               <div className="contacts-footer__wrapper">
                 <h3 className="title visually-hidden contacts-footer__title">Адрес</h3>
                 <p className="contacts-footer__adress">г. Санкт-Петербург, м. Невский проспект, ул. Казанская 6. </p>
-                <a href="tel:88125005050" className="contacts-footer__link">8-812-500-50-50</a>
+                <a href="tel:88125005050" className="link-site contacts-footer__link">8-812-500-50-50</a>
               </div>
               <div className="contacts-footer__wrapper">
                 <h3 className="contacts-footer__title">Режим работы:</h3>
@@ -72,7 +72,7 @@ const Footer = ({isMainPage}) => {
 };
 
 Footer.propTypes = {
-  isMainPage: IsMainPagePropType,
+  isMainPage: isMainPagePropType,
 };
 
 export default Footer;
