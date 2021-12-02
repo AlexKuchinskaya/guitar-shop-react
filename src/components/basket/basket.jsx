@@ -87,7 +87,7 @@ const Basket = (props) => {
                     <CloseIcon />
                   </button>
                   <div className="guitars__container guitars__container--image">
-                    <img src={returnGuitarPictureSmall(guitarElement.type)} className="image guitars__image" alt={guitarElement.name} height="128" width="56" />
+                    <img src={returnGuitarPictureSmall(guitarElement.type)} className="guitars__image" alt={guitarElement.name} height="128" width="56" />
                   </div>
                   <div className="guitars__container guitars__container--info">
                     <h4 className="title guitars__guitar-title">{guitarElement.type} {guitarElement.name}</h4>

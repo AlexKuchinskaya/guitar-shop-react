@@ -86,7 +86,7 @@ const Catalog = ({guitars}) => {
                       mocksData.map((mockGuitar, index) => {
                         return <article key={mockGuitar.id} className="catalog__card">
                           <div className="catalog__image">
-                            <img src={returnGuitarPicture(mockGuitar.type)} className="image catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />
+                            <img src={returnGuitarPicture(mockGuitar.type)} className="catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />
                           </div>
                           <div className="catalog__card-container catalog__card-container--rating">
                             <CatalogStarRating />
