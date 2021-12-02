@@ -1,6 +1,6 @@
 import React from 'react';
 import {STARS_RATING} from '../const/const';
-import { ReactComponent as StarRating } from '../../img/icon-star.svg';
+import {ReactComponent as StarRating} from '../../img/icon-star.svg';
 
 const CatalogStarRating = () => {
   return (
@@ -8,7 +8,7 @@ const CatalogStarRating = () => {
       {STARS_RATING.map((star) => {
         return (
           <div key={star} className="catalog__star">
-              <StarRating />
+            <StarRating />
           </div>
         );
       })}

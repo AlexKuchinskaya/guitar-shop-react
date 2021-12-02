@@ -1,0 +1,22 @@
+env:
+  es2017: true
+  browser: true
+  commonjs: true
+
+extends: ['htmlacademy/es6', 'plugin:react/recommended']
+
+rules: {
+    "no-console": 0
+}
+
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 2018
+  sourceType: module
+
+plugins: ['react']
+
+settings:
+  react:
+    version: '16'

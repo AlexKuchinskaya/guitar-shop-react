@@ -5,26 +5,26 @@ import AddedToBasket from "./added-to-basket";
 import {ReactComponent as CloseFormIcon} from '../../img/icon-cross.svg';
 import {returnFalseForCallBackFunction} from '../utils/utils';
 import {ESC_KEY} from '../const/const';
-import { GuitarPropType } from '../../types/types';
-import FocusTrap from 'focus-trap-react'
+import {GuitarPropType} from '../../types/types';
+import FocusTrap from 'focus-trap-react';
 
 const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpenChange}) => {
-  const [isAddToBasket, setIsAddToBasket] = useState(true)
+  const [isAddToBasket, setIsAddToBasket] = useState(true);
   const popUpRef = useRef();
 
   const onAddToBasketClick = (addToBasketCallback) => {
-    const newIsAddToBasket = addToBasketCallback()
+    const newIsAddToBasket = addToBasketCallback();
     setIsAddToBasket(newIsAddToBasket);
-  }
+  };
 
   const onContinueBuyButtonClick = (evt, continueBuyCallback) => {
     if (!popUpRef.current.contains(evt.target)) {
       onIsModalOpenChange(continueBuyCallback);
     }
-  }
+  };
   const closePopUp = () => {
-    onIsModalOpenChange(returnFalseForCallBackFunction)
-  } 
+    onIsModalOpenChange(returnFalseForCallBackFunction);
+  };
 
   let handleMousedownPopUp = (evt) => {
     if (!popUpRef.current.contains(evt.target)) {
@@ -46,16 +46,16 @@ const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpen
       document.removeEventListener(`keydown`, handleEscapeKeyPopUp);
     };
   });
-    return (
-      <FocusTrap active={isModalOpen}>
+  return (
+    <FocusTrap active={isModalOpen}>
       <div id="address-modal" aria-modal="true" className="modal modal--show">
         <div ref={popUpRef} className="modal__main">
           <div className="modal__wrapper">
-              {isAddToBasket ?
-                <AddToBasket isDeleteFromBasket={isDeleteFromBasket} guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick} onContinueBuyButtonClick={onContinueBuyButtonClick}/>
-                :
-                <AddedToBasket onContinueBuyButtonClick={onContinueBuyButtonClick}/>
-            
+            {isAddToBasket ?
+              <AddToBasket isDeleteFromBasket={isDeleteFromBasket} guitarCard={guitarCard} onAddToBasketClick={onAddToBasketClick} onContinueBuyButtonClick={onContinueBuyButtonClick}/>
+              :
+              <AddedToBasket onContinueBuyButtonClick={onContinueBuyButtonClick}/>
+
             }
           </div>
           <button
@@ -63,17 +63,18 @@ const ModalBasket = ({isDeleteFromBasket, isModalOpen, guitarCard, onIsModalOpen
             onClick={closePopUp}
           >
             <CloseFormIcon />
-        </button>
+          </button>
         </div>
       </div>
-      </FocusTrap>
-    )
+    </FocusTrap>
+  );
 };
 
 ModalBasket.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  guitarCard: GuitarPropType, 
+  guitarCard: GuitarPropType,
   onIsModalOpenChange: PropTypes.func.isRequired,
-}
+  isDeleteFromBasket: PropTypes.bool.isRequired,
+};
 
 export default ModalBasket;

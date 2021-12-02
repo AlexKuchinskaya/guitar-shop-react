@@ -2,7 +2,6 @@
 @import '../../styles/global.scss';
 @import '../../styles/container-site.scss';
 
-
 .header {
     box-sizing: border-box;
     background-color: $light-grey;
@@ -37,19 +36,6 @@
     &--basket {
         width: 50px;
     }
-    svg {
-        
-        // width: 40px;
-        // height: 40px;
-    }
-    // position: relative;
-    // background-repeat: no-repeat;
-    // display: block;
-    // background-position: center;
-    // background-image: url(../im);
-    // width: 40px;
-    // height: 40px;
-
 }
 .header__extra-count {
     color: $red;

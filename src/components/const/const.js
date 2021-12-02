@@ -17,80 +17,80 @@ export const SocialLinks = {
   FACEBOOK: 1,
   INSTAGRAM: 2,
   TWITTER: 3
-}
+};
 
 export const GuitarTypes = {
   ACOUSTIC: `акустическая гитара`,
   ELECTRO: `электрогитара`,
   UKULELE: `укулеле`
-}
+};
 export const Routes = {
   MAIN: `/`,
   MY_BASKET: `/mybasket`,
 };
 export const pageNavigationLinks = [
-    {
-      id: 1,
-      linkName: `Главная`,
-      route: Routes.MAIN,
-      class: `main`
-    },
-    {
-      id: 2,
-      linkName: `Каталог`,
-      route: Routes.MAIN,
-      class: `catalog`
-    },
-    {
-      id: 3,
-      linkName: `Оформляем`,
-      route: Routes.MY_BASKET,
-      class: `basket`
-    },
-]
-
-export const guitarTypesCheckbox = [`Акустические гитары`, `Электрогитары`, `Укулеле`]
-export const guitarNumberOfStrings = [4, 6, 7, 12]
-export const allNavSiteLinks = [
-    {
-      linkName:`Каталог`,
-      href: `catalog`,
-      id: 1,
-  
-    },
-    {
-      linkName:`Где купить?`,
-      href: `shops`,
-      id: 2,
-  
-    },
-    {
-      linkName:`О компании`,
-      href: `about`,
-      id: 3,
-  
-    },
-    {
-      linkName:`Cервис-центры`,
-      href: `service`,
-      id: 4,
-  
-    },
+  {
+    id: 1,
+    linkName: `Главная`,
+    route: Routes.MAIN,
+    class: `main`
+  },
+  {
+    id: 2,
+    linkName: `Каталог`,
+    route: Routes.MAIN,
+    class: `catalog`
+  },
+  {
+    id: 3,
+    linkName: `Оформляем`,
+    route: Routes.MY_BASKET,
+    class: `basket`
+  },
 ];
 
-export const extraLinks = [
+export const guitarTypesCheckbox = [`Акустические гитары`, `Электрогитары`, `Укулеле`];
+export const guitarNumberOfStrings = [4, 6, 7, 12];
+export const allNavSiteLinks = [
   {
-    linkName:`map`,
+    linkName: `Каталог`,
+    href: `catalog`,
     id: 1,
 
   },
   {
-    linkName:`search`,
+    linkName: `Где купить?`,
+    href: `shops`,
     id: 2,
 
   },
   {
-    linkName:`basket`,
+    linkName: `О компании`,
+    href: `about`,
+    id: 3,
+
+  },
+  {
+    linkName: `Cервис-центры`,
+    href: `service`,
+    id: 4,
+
+  },
+];
+
+export const extraLinks = [
+  {
+    linkName: `map`,
+    id: 1,
+
+  },
+  {
+    linkName: `search`,
+    id: 2,
+
+  },
+  {
+    linkName: `basket`,
     id: 3,
 
   },
@@ -109,7 +109,7 @@ export const footerSocialInfo = [
     name: `Twitter`,
     id: 3,
   },
-]
+];
 
 export const footerCatalogLinks = [
   {
@@ -132,7 +132,7 @@ export const footerCatalogLinks = [
     name: `Укулеле`,
     id: 5,
   },
-]
+];
 export const footerInfoLinks = [
   {
     name: `Где купить?`,
@@ -154,4 +154,4 @@ export const footerInfoLinks = [
     name: `Сервис-центры`,
     id: 5,
   },
-]
+];
