@@ -16,12 +16,12 @@
         content: "";
         display: block;
         background-color: transparent;
-        background-image: url(../../img/guitar-header.png);
+        background-image: url(../../img/guitar-header-new.png);
         background-repeat: no-repeat;
         background-position: center;
         position: absolute;
-        background-size: auto 106%;
-        width: 100%;
+        background-size: 100% 100%;
+        width: 107%;
         height: 282px;
         top: -32px;
         left: 0;
@@ -32,15 +32,15 @@
         content: "";
         display: block;
         background-color: transparent;
-        background-image: url(../../img/guitar-footer.png);
+        background-image: url(../../img/guitar-footer-new.png);
         background-repeat: no-repeat;
         background-position: center;
         position: absolute;
-        background-size: auto 106%;
-        width: 100%;
+        background-size: 100% 106%;
+        width: 106%;
         height: 282px;
         bottom: -202px;
-        left: 0;
+        left: -6%;
         z-index: 10;
 
     }

@@ -93,12 +93,21 @@
     color: $normal-grey;
     border-radius: 0;
     text-align: center;
+    box-sizing: border-box;
 }
-
+.guitars__input::-webkit-outer-spin-button,
+.guitars__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
 .guitar__button {
     position: relative;
     width: 28px;
     border: 1px solid $normal-grey;
+    margin: 0;
     svg {
         position: absolute;
         top: 50%;

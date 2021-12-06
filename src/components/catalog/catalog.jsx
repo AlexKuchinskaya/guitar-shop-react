@@ -16,17 +16,20 @@ import PageNavigation from '../page-navigation/page-navigation';
 const Catalog = ({guitars}) => {
   const guitarPerPage = 9;
   const [mocksData, setMocksData] = useState(guitars);
+  const [mockDataToShow, setMockDataToShow] = useState(guitars);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
 
   const onFilterShowButtonClick = (onFilterShowButtonClickCallback) => {
+
     setMocksData(onFilterShowButtonClickCallback([...guitars]));
+    console.log(`mocksData show`, mocksData);
   };
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * guitarPerPage) % guitars.length;
+    const newOffset = (event.selected * guitarPerPage) % mocksData.length;
     setItemOffset(newOffset);
   };
 
@@ -59,7 +62,8 @@ const Catalog = ({guitars}) => {
     setModalIndex(index);
   };
   useEffect(() => {
-    document.body.style.overflow = `unset`;
+    // document.body.style.overflow = `unset`;
+    document.body.style.overflowX = `hidden`;
     if (isModalOpen) {
       document.body.style.overflow = `hidden`;
     } else {
@@ -67,10 +71,11 @@ const Catalog = ({guitars}) => {
     }
   }, [isModalOpen]);
   useEffect(() => {
+    console.log(`mocksData`, mocksData);
     const endOffset = itemOffset + guitarPerPage;
-    setMocksData(guitars.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(guitars.length / guitarPerPage));
-  }, [itemOffset, guitarPerPage, guitars]);
+    setMockDataToShow(mocksData.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(mocksData.length / guitarPerPage));
+  }, [itemOffset, guitarPerPage, mocksData]);
 
   return (
     <section className="catalog container-site">
@@ -82,8 +87,8 @@ const Catalog = ({guitars}) => {
           <CatalogSort onSortTypeChange={onSortTypeChange} />
           <div className="catalog__wrapper">
             <div className="list catalog__list">
-              {mocksData &&
-                      mocksData.map((mockGuitar, index) => {
+              {mockDataToShow &&
+                      mockDataToShow.map((mockGuitar, index) => {
                         return <article key={mockGuitar.id} className="catalog__card">
                           <div className="catalog__image">
                             <img src={returnGuitarPicture(mockGuitar.type)} className="catalog__guitar-image" alt={mockGuitar.name} height="190" width="68" />

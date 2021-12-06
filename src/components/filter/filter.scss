@@ -64,11 +64,23 @@
     line-height: 10px;
     padding: 5px 19px;
     font-family: "Droid Sans";
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+    }
+    
+}
+.filter__price-input::-webkit-outer-spin-button,
+.filter__price-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
 }
 .filter__input-container {
     margin-right: 40px;
     &:last-child {
-        margin-bottom: 0;
+        margin-right: 0;
     }
 }
 

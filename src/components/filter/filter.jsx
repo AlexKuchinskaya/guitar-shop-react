@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from "prop-types";
-import {GuitarTypes, guitarTypesCheckbox, guitarNumberOfStrings} from '../const/const';
+import {GuitarTypes, guitarTypesCheckbox, guitarNumberOfStrings, DEFAULT_1000, DEFAULT_3000} from '../const/const';
 import './filter.scss';
 
 const Filter = ({onFilterShowButtonClick}) => {
-  const [priceFrom, setPriceFrom] = useState(1000);
-  const [priceTo, setPriceTo] = useState(30000);
+  const [priceFrom, setPriceFrom] = useState(undefined);
+  const [priceTo, setPriceTo] = useState(undefined);
   const [checkedTypeGuitarState, setCheckedTypeGuitarState] = useState(
       new Array(guitarTypesCheckbox.length).fill(false)
   );
@@ -101,7 +101,6 @@ const Filter = ({onFilterShowButtonClick}) => {
     } else if (priceFrom > priceTo) {
       setPriceFrom(priceTo);
     }
-    return null;
   };
 
   const handlePriceInputFromTo = () => {
@@ -110,11 +109,17 @@ const Filter = ({onFilterShowButtonClick}) => {
     } else if (priceFrom > priceTo) {
       setPriceTo(priceFrom);
     }
-    return null;
   };
   const filterByPrice = (dataToFilter, startingPrice, limitPrice) => {
-    const filteredData = dataToFilter.filter((elementToFilter) => elementToFilter.price >= startingPrice && elementToFilter.price <= limitPrice);
-    return filteredData;
+    if (startingPrice === undefined && limitPrice === undefined) {
+      return dataToFilter;
+    } else if (startingPrice === undefined) {
+      return dataToFilter.filter((elementToFilter) => elementToFilter.price <= limitPrice);
+    } else if (limitPrice === undefined) {
+      return dataToFilter.filter((elementToFilter) => elementToFilter.price >= startingPrice);
+    } else {
+      return dataToFilter.filter((elementToFilter) => elementToFilter.price >= startingPrice && elementToFilter.price <= limitPrice);
+    }
   };
   const getCheckedGuitarsType = (guitarStates) => {
     let guitarsTypes = [];
@@ -148,7 +153,7 @@ const Filter = ({onFilterShowButtonClick}) => {
   };
 
   const filterDataByPrice = (dataGuitars) => {
-    return filterByPrice(dataGuitars, parseInt(priceFrom, 10), parseInt(priceTo, 10));
+    return filterByPrice(dataGuitars, priceFrom, priceTo);
   };
 
   const getCheckedGuitarsStrings = (guitarStringStates) => {
@@ -211,10 +216,11 @@ const Filter = ({onFilterShowButtonClick}) => {
                                     className="filter__price-input"
                                     htmlFor="priceFrom"
                                     type="number"
-                                    placeholder="1 000"
+                                    placeholder={DEFAULT_1000}
                                     value={priceFrom}
                                     onChange={handlePriceInputFromChange}
                                     onBlur={handlePriceInputFromBlur}
+                                    placeholder={DEFAULT_1000}
 
                             />
                         </div>
@@ -224,7 +230,7 @@ const Filter = ({onFilterShowButtonClick}) => {
                                     className="filter__price-input"
                                     htmlFor="priceTo"
                                     type="number"
-                                    placeholder="30 000"
+                                    placeholder={DEFAULT_3000}
                                     value={priceTo}
                                     onChange={handlePriceInputToChange}
                                     onBlur={handlePriceInputFromTo}

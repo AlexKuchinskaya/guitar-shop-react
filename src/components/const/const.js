@@ -6,6 +6,8 @@ export const STARS_RATING = [1, 2, 3, 4, 5];
 export const GITARAHIT = `GITARAHIT`;
 export const SUPERGITARA = `SUPERGITARA`;
 export const GITARA2020 = `GITARA2020`;
+export const DEFAULT_1000 = 1000;
+export const DEFAULT_3000 = 3000;
 
 export const ExtraLinks = {
   MAP: 1,

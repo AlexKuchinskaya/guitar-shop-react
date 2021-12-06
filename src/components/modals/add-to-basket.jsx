@@ -25,7 +25,7 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
     <div className="modal__flex">
       <div className="modal__container">
         <div className="modal__image">
-          <img src={returnGuitarPictureSmall(guitarCard.type)} className="image modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
+          <img src={returnGuitarPictureSmall(guitarCard.type)} className="modal__guitar-image" alt={guitarCard.name} height="128" width="56" />
         </div>
         <div className="modal__text">
           <h4 className="title modal__guitar-title">Гитара {guitarCard.name}</h4>
@@ -41,7 +41,7 @@ const AddToBasket = ({isDeleteFromBasket, guitarCard, currentbasketState, onAddT
           ?
           <>
             <button
-              className="button button--orange modal__button"
+              className="button button--orange modal__button modal__button--delete"
               onClick={(evt) => handleDeleteFromBasket(evt, guitarCard.id)}
             >
             Удалить товар
