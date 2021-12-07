@@ -15,11 +15,11 @@ import PageNavigation from '../page-navigation/page-navigation';
 import ModalBasket from '../modals/modalBasket';
 
 const Basket = (props) => {
-  const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDecreaseQuantityButtonClick, onFinalCostChange, finalCost, finalCostDiscount, onDeleteButtonClick} = props;
+  const {guitars, idItemsInBasketList, currentBasketList, onAddtoBasketButtonClick, onDecreaseQuantityButtonClick, onFinalCostChange, finalCost, finalCostDiscount} = props;
   const [coupon, setCoupon] = useState(``);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isCouponWrong, setIsCouponWrong] = useState(false);
-
+  console.log(`finalCostDiscount`, finalCostDiscount);
   const onIsModalOpenChange = (isModalOpenCallback) => {
     setIsModalDeleteOpen(isModalOpenCallback);
   };
@@ -79,7 +79,7 @@ const Basket = (props) => {
                     className="button guitar__button-delete"
                     onClick={() => {
                       setIsModalDeleteOpen(true);
-                      onDeleteButtonClick(guitarElement.id);
+                      //   onDeleteButtonClick(guitarElement.id);
                       setModalIndex(index);
 
                     }}

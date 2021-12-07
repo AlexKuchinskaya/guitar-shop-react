@@ -25,7 +25,6 @@ const Catalog = ({guitars}) => {
   const onFilterShowButtonClick = (onFilterShowButtonClickCallback) => {
 
     setMocksData(onFilterShowButtonClickCallback([...guitars]));
-    console.log(`mocksData show`, mocksData);
   };
 
   const handlePageClick = (event) => {
@@ -62,7 +61,6 @@ const Catalog = ({guitars}) => {
     setModalIndex(index);
   };
   useEffect(() => {
-    // document.body.style.overflow = `unset`;
     document.body.style.overflowX = `hidden`;
     if (isModalOpen) {
       document.body.style.overflow = `hidden`;
@@ -71,7 +69,6 @@ const Catalog = ({guitars}) => {
     }
   }, [isModalOpen]);
   useEffect(() => {
-    console.log(`mocksData`, mocksData);
     const endOffset = itemOffset + guitarPerPage;
     setMockDataToShow(mocksData.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(mocksData.length / guitarPerPage));

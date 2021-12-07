@@ -15,6 +15,10 @@ const getFinalGuitarCost = (guitarId, guitars) => {
   return guitars.filter((guitar) => guitar.id === guitarId)[0].price;
 };
 
+const getNumberGuitarToDelete = (guitarId, idItemsList) => {
+  return idItemsList.filter((itemId) => itemId === guitarId).length;
+};
+
 const checkArrayForElement = (elementList, elementToCompare) => {
   let index = elementList.indexOf(elementToCompare);
   if (index > -1) {
@@ -53,7 +57,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         itemsInBasket: state.idItemsInBasketList.filter((idItem) => idItem !== action.payload).length,
         idItemsInBasketList: state.idItemsInBasketList.filter((idItem) => idItem !== action.payload),
-        finalCost: state.finalCost - (getFinalGuitarCost(action.payload, state.guitarList) * state.guitarList.filter((guitar) => guitar.id === action.payload).length),
+        finalCost: state.finalCost - (getFinalGuitarCost(action.payload, state.guitarList) * getNumberGuitarToDelete(action.payload, state.idItemsInBasketList)),
+        finalCostDiscount: state.finalCost - (getFinalGuitarCost(action.payload, state.guitarList) * getNumberGuitarToDelete(action.payload, state.idItemsInBasketList)),
 
       };
     default:
