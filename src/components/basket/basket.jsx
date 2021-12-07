@@ -166,7 +166,7 @@ const Basket = (props) => {
 
             </div>
             <div className="basket__total">
-              <p className="basket__final-price">Всего: {finalCostDiscount} ₽ </p>
+              <p className="basket__final-price">Всего: {formatPriceWithSpaces(finalCostDiscount)} ₽ </p>
               <button className="button button--orange basket__submit" type="submit">Оформить заказ</button>
             </div>
           </div>
